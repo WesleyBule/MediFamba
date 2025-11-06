@@ -6,8 +6,10 @@ class Users(models.Model):
     password = models.CharField(max_length=150)
     role = models.CharField(max_length=20,
         choices=[('admin','Admin'),
-        ('Doctor','Doctor'),
+        ('doctor','Doctor'),
         ('patient','Patient')])
+    def __str__(self):
+        return self.name
 
 
 
@@ -20,4 +22,3 @@ class Doctor(models.Model):
 class Patient(models.Model):
     user = models.OneToOneField(Users, on_delete=models.CASCADE)
     age = models.IntegerField()
-    
