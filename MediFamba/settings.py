@@ -38,7 +38,7 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 THIRD_PART_APPS = [
-
+    "widget_tweaks"
 ]
 MY_APPS = [
     'users',
