@@ -4,10 +4,11 @@ from .models import Patient
 from .forms import UserRegisterForm
 
 def user_register(request):
-    form = UserRegisterForm
     if request.method == "POST":
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('#')
+    else:
+        form = UserRegisterForm()
     context = {'form':form}
     return render(request, "users/signin.html", context)
