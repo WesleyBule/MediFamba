@@ -1,31 +1,26 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class Users(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    password = models.CharField(max_length=150)
-    role = models.CharField(max_length=20,
-        choices=[
-        ('doctor','Doctor'),
-        ('patient','Patient')])
-    def __str__(self):
-        return self.name
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(Users ,on_delete=models.CASCADE,
-        limit_choices_to={'role':'doctor'})
+    user = models.OneToOneField(User ,on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, default="")
+    birthDate = models.DateField(default="1900-01-01")
     speciality = models.CharField(max_length=120)
     available_days = models.TextField()
 
+    def __str__(self):
+        return self.name
 
 class Patient(models.Model):
-    user = models.OneToOneField(Users, on_delete=models.CASCADE ,
-        limit_choices_to={'role':'patient'})
-    residence = models.CharField(max_length=50, default="Unknown")
-    phoneNumber = models.CharField(max_length=20, unique=True, default="(+258) ")
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, default="")
+    residence = models.CharField(max_length=50, default="")
+    phoneNumber = models.CharField(max_length=14, unique=True, default="+258 ")
     gender = models.CharField(max_length=8, choices=[('m',"Male"),('f','Female')], default="")
     birthDate = models.DateField()
 
+
     def __str__(self):
-        return self.user.name
+        return self.name

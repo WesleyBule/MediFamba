@@ -1,18 +1,12 @@
 from django.contrib import admin
-from .models import Doctor , Patient , Users
+from .models import Doctor , Patient
+from django.contrib.auth.models import User
 
-@admin.register(Users)
-class UsersAdmin(admin.ModelAdmin):
-    list_display = ['name','email','role']
-
-    def get_queryset(self , request):
-        qs = super().get_queryset(request)
-        return qs.filter(role='patient')
 
 @admin.register(Doctor)
 class DoctorAdmin(admin.ModelAdmin):
-    list_display = ['user','speciality']
+    list_display = ['id','user','name','speciality']
 
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
-    list_display = ['id','user','birthDate','phoneNumber','gender']
+    list_display = ['id','user','name','birthDate','phoneNumber','gender']
