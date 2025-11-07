@@ -13,11 +13,19 @@ class Users(models.Model):
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(Users , on_delete=models.CASCADE , limit_choices_to={'role':'doctor'})
+    user = models.OneToOneField(Users ,on_delete=models.CASCADE,
+        limit_choices_to={'role':'doctor'})
     speciality = models.CharField(max_length=120)
     available_days = models.TextField()
 
 
 class Patient(models.Model):
-    user = models.OneToOneField(Users, on_delete=models.CASCADE , limit_choices_to={'role':'patient '})
-    age = models.IntegerField()
+    user = models.OneToOneField(Users, on_delete=models.CASCADE ,
+        limit_choices_to={'role':'patient'})
+    residence = models.CharField(max_length=50, default="Unknown")
+    phoneNumber = models.CharField(max_length=20, unique=True, default="(+258) ")
+    gender = models.CharField(max_length=8, choices=[('m',"Male"),('f','Female')], default="")
+    birthDate = models.DateField()
+
+    def __str__(self):
+        return self.user.name

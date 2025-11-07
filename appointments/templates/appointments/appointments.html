@@ -1,0 +1,11 @@
+{%extends "base.html" %}
+{% block title %}
+Appointments
+{% endblock title %} 
+
+{% block body %}
+{% for appointment in appointments %}
+  {{ appointment.doctor }} |  {{ appointment.patient }} |  {{ appointment.date }} |  {{ appointment.status }} 
+{% endfor %}
+{% endblock body %}
+
