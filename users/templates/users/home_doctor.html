@@ -1,0 +1,56 @@
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'users/style.css' %}">
+<link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
+{% endblock links %}
+{% block 'title' %}
+
+{% endblock 'title' %}
+{% block body %}
+     <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx  bx-heart-plus'></i> 
+                <div class="logo_name">MediFamba</div>
+            </div>
+            <i class='bx  bx-menu' id="btn"></i> 
+        </div>
+        <ul class="nav_list">
+            <li>
+                <a href="#">
+                    <i class='bx  bx-dashboard'></i> 
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <!--<span class="tooltip">Dashboard</span> -->
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx  bx-calendar-alt'></i>   
+                    <span class="links_name">Agenda</span>
+                </a>
+                <!--<span class="tooltip">Dashboard</span> -->
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx  bx-people-diversity'></i>  
+                    <span class="links_name">Patients</span>
+                </a>
+                <!--<span class="tooltip">Dashboard</span> -->
+            </li>
+            
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <!--<i class='bx  bx-user-circle'></i> --> 
+                    <div class="name_job">
+                        <div class="name">Dr. Teste</div>
+                        <div class="job">Dentist</div>
+                    </div>
+                </div>
+                <i class='bx  bx-arrow-out-left-square-half' id="log_out"></i> 
+            </div>
+        </div>
+     </div>
+
+{% endblock body %}

@@ -1,87 +1,136 @@
-body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background: #1e1e2f;
-        color: #e0e0e0;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.task-container {
-    max-width: 900px;
-    margin: 40px auto;
-    background: #2c2c3a;
+body{
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.sidebar{
+    height: 100%;
+    width: 240px;
+    background-color: rgb(48, 6, 20);
+    padding: 6px 14px;
+}
+
+.sidebar .logo_content .logo{
+    color: whitesmoke;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+}
+.logo_content .logo i{
+    font-size: 28px;
+    margin-right: 5px;
+}
+
+.logo_content .logo .logo_name{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.sidebar #btn{
+    color: whitesmoke;
+    position: absolute;
+    left: 35%;
+    top: 6px;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+
+}
+
+.sidebar ul{
+    margin-top: 20px;
+}
+
+.sidebar ul li{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin: 0 5px;
+    list-style: none ;
+    line-height: 50px;
+
+}
+
+.sidebar ul li a{
+    color: #fff;
+    display: flex;
+    align-items:center ;
+    text-decoration: none; 
+    transition: all 0.6s ease;
     border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    padding: 25px 30px;
 }
 
-        h1 {
-        text-align: center;
-        color: #4a90e2;
-        margin-bottom: 25px;
-        }
+.sidebar ul li a:hover{
+    color: #11101d;
+    background-color: #fff;
 
-        table {
-        width: 100%;
-        border-collapse: collapse;
-        overflow: hidden;
-        border-radius: 10px;
-        }
+}
+.sidebar ul li a i {
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
 
-        thead {
-        background: #4a90e2;
-        color: white;
-        }
+.sidebar .profile_content {
+    position: absolute;
+    color: #fff;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
 
-        th, td {
-        padding: 12px 15px;
-        text-align: left;
-        }
+.sidebar .profile_content .profile{
+    position: relative ;
+    padding: 10px 6px;
+    height: 60px;
+}
 
-        tbody tr {
-        border-bottom: 1px solid #444;
-        transition: background 0.2s;
-        }
+.profile_content .profile .profile_details {
+    display: flex;
+    align-items: center;
+}
 
-        tbody tr:hover {
-        background: #3a3a4a;
-        }
+/*
+.profile .profile_details i {
+    height: 45px;
+    width: 45px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+*/
 
-        .actions {
-        text-align: center;
-        }
+.profile .profile_details .name_job{
+    margin-left: 10px;
+     
+}
 
-        .btn {
-        display: inline-block;
-        text-decoration: none;
-        color: white;
-        font-size: 13px;
-        padding: 6px 12px;
-        border-radius: 6px;
-        margin: 0 3px;
-        transition: 0.2s;
-        }
+.profile .profile_details .name{
+    font-size: 15px;
+    font-weight: 400;
+}
 
-        .btn-edit { background: #f1c40f; color: #1e1e2f; }
-        .btn-edit:hover { background: #d4ac0d; }
+.profile .profile_details .job{
+    font-size: 12px;
 
-        .btn-delete { background: #e74c3c; }
-        .btn-delete:hover { background: #c0392b; }
+}
 
-        .btn-done { background: #2ecc71; }
-        .btn-done:hover { background: #27ae60; }
-
-        .add-btn {
-        display: block;
-        width: fit-content;
-        margin: 25px auto 0;
-        background: #4a90e2;
-        color: white;
-        padding: 10px 22px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        transition: 0.2s;
-        }
-
-        .add-btn:hover {
-        background: #357ab7;
+.profile #log_out{
+    position: absolute;
+    left: 88%;
+    bottom: 5px;
+    transform: translateX(-50%);
 }

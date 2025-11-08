@@ -44,4 +44,4 @@ def user_logout(request):
 
 @login_required(login_url='logIn')
 def home(request):
-    return render(request, "users/home.html")
+    return render(request, "users/home_doctor.html")
