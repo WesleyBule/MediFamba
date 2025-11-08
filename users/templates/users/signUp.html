@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 {% block 'title' %}
-Sign In
+Sign Up
 {% endblock 'title' %}
 
 {% block 'body' %}
@@ -56,7 +56,7 @@ Sign In
                 </div>
 
                 <div class="text-center mt-3">
-                <small>Have account? <a href="#" class="text-decoration-none">Log in</a></small>
+                <small>Have account? <a href="{% url 'logIn' %}" class="text-decoration-none">Log in</a></small>
                 </div>
             </form>
             </div>
