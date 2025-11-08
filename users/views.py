@@ -1,7 +1,10 @@
 from django.shortcuts import render , redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate , login , logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
+
 from .forms import UserRegisterForm 
 
 
@@ -29,11 +32,16 @@ def user_login(request):
             login(request , user)
             return redirect('home')
         else :
-            messages.info(request, "Invalid Email or Password")
+            messages.info(request, "Invalid Username or Password")
             return render(request, 'users/logIn.html')
     context = {}
     return render(request , "users/logIn.html", context)
 
+def user_logout(request):
+    logout(request)
+    return redirect('logIn')
 
+
+@login_required(login_url='logIn')
 def home(request):
     return render(request, "users/home.html")
