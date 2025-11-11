@@ -44,8 +44,11 @@
                 <div class="profile_details">
                     <!--<i class='bx  bx-user-circle'></i> --> 
                     <div class="name_job">
-                        <div class="name"> {{user}} </div>
+                    {% for user in users %}
+                        <div class="name">Dr.{{ user }}</div>
                         <div class="job">Dentist</div>
+                    {% endfor %}
+
                     </div>
                 </div>
                 <i class='bx  bx-arrow-out-left-square-half' id="log_out"></i> 

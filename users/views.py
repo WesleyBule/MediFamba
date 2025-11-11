@@ -30,6 +30,11 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request , user)
+
+            if hasattr(user, 'doctor'):
+                return redirect('home_doctor')
+            elif hasattr(user, 'patient'):
+                return redirect('home_patient')
             return redirect('home')
         else :
             messages.info(request, "Invalid Username or Password")
@@ -42,6 +47,16 @@ def user_logout(request):
     return redirect('logIn')
 
 
+
 @login_required(login_url='logIn')
 def home(request):
+    return render(request, "users/home.html")
+
+@login_required(login_url='logIn')
+def home_doctor(request):
     return render(request, "users/home_doctor.html")
+
+@login_required(login_url='logIn')
+def home_patients(request):
+    return render(request, "users/home_patients.html")
+

@@ -8,4 +8,6 @@ urlpatterns = [
     path('users/', include("users.urls")),
     path('appointments/', include("appointments.urls")),
     path("", views.home , name='home'),
+    path("doctors/",views.home_doctor, name="home_doctor"),
+    path("patients/", views.home_patients, name="home_patient")
 ]
