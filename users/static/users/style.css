@@ -130,7 +130,7 @@ body{
 
 .profile #log_out{
     position: absolute;
-    left: 88%;
+    left: 10%;
     bottom: 5px;
     transform: translateX(-50%);
 }
