@@ -7,7 +7,7 @@
 
 {% endblock 'title' %}
 {% block body %}
-     <div class="sidebar">
+    <div class="sidebar">
         <div class="logo_content">
             <div class="logo">
                 <i class='bx  bx-heart-plus'></i> 
@@ -18,24 +18,24 @@
         <ul class="nav_list">
             <li>
                 <a href="#">
-                    <i class='bx  bx-dashboard'></i> 
+                    <i class='bx  bx-home'></i>  
                     <span class="links_name">Home</span>
                 </a>
-                <!--<span class="tooltip">Dashboard</span> -->
+                <span class="tooltip">Home</span>
             </li>
             <li>
                 <a href="#">
                     <i class='bx  bx-calendar-alt'></i>   
                     <span class="links_name">Agenda</span>
                 </a>
-                <!--<span class="tooltip">Dashboard</span> -->
+                <span class="tooltip">Agenda</span>
             </li>
             <li>
                 <a href="#">
                     <i class='bx  bx-people-diversity'></i>  
                     <span class="links_name">Doctors</span>
                 </a>
-                <!--<span class="tooltip">Dashboard</span> -->
+                <span class="tooltip">Doctors</span>
             </li>
             
         </ul>
@@ -44,16 +44,28 @@
                 <div class="profile_details">
                     <!--<i class='bx  bx-user-circle'></i> --> 
                     <div class="name_job">
-                    {% for user in users %}
-                        <div class="name">Dr.{{ user }}</div>
+                        <div class="name">{{user}} </div>
                         <div class="job">Dentist</div>
-                    {% endfor %}
-
                     </div>
                 </div>
-                <i class='bx  bx-arrow-out-left-square-half' id="log_out"></i> 
+                <a href="{% url 'logOut' %}"><i class='bx  bx-arrow-out-left-square-half' id="log_out"></i></a>
             </div>
         </div>
      </div>
+     <div class="home_content">
+        <div class="text">Home Content</div>
+     </div>
+
+    <script>
+    
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+
+    btn.onclick = function(){
+        sidebar.classList.toggle("active")
+    }
+
+
+    </script>
 
 {% endblock body %}
