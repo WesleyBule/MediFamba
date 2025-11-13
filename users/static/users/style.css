@@ -5,19 +5,30 @@
 }
 
 body{
-    position: relative;
+    background-color:#F2F2F2;
+    color:#0D0D0D;
     min-height: 100vh;
     width: 100%;
     overflow: hidden;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style:normal;
+}
+.medi {
+  color: #007AFF;
+}
+.famba {
+  color: #34C759;
 }
 
 .sidebar{
     position: relative;
     height: 100vh;
     width: 78px;
-    background-color: rgb(48, 6, 20);
-    padding: 6px 14px;
-    transition: all 0.6s ease;
+    background-color:#BFBFBF;   
+    padding: 6px 16px;
+    transition: all 0.5s ease;
+    color:#11101d;
 }
 
 .sidebar.active{
@@ -32,7 +43,7 @@ body{
     align-items: center;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.4s ease;
+    transition: all 0.5s ease;
 }
 
 .sidebar.active .logo_content .logo{
@@ -40,9 +51,10 @@ body{
     pointer-events: none;
 }
 
-.logo_content .logo i{
+.logo_content .logo img{
     font-size: 28px;
-    margin-right: 5px;
+    height :60px;
+    width :60px;
 }
 
 .logo_content .logo .logo_name{
@@ -95,6 +107,7 @@ body{
     height: 35px;
     width: 122px;
     background: #fff;
+    color:#0D0D0D;
     line-height: 35px;
     text-align: center;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -116,11 +129,11 @@ body{
 
 
 .sidebar ul li a{
-    color: #fff;
+    color: #11101d;
     display: flex;
     align-items:center ;
     text-decoration: none; 
-    transition: all 0.6s ease;
+    transition: all 0.5s ease;
     border-radius: 12px;
     white-space: nowrap;
 }
@@ -140,7 +153,7 @@ body{
 .sidebar .links_name{
     opacity: 0;
     pointer-events: none;
-    transition: all 0.6s ease;
+    transition: all 0.5s ease;
 }
 
 .sidebar.active .links_name{
@@ -154,7 +167,7 @@ body{
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgb(79, 9, 32) ;
+    background-color: #BFBFBF  ;
     border-radius: 5px;
 }
 
@@ -163,11 +176,12 @@ body{
     padding: 10px 6px;
     height: 60px;
     background: none;
-    transition: all 0.6s ease;
+    transition: all 0.5s ease;
 }
 
 .sidebar.active .profile_content .profile{
-    background: rgb(79, 9, 32);
+    background: #fff;
+    border-radius:10px 60px 30px; 
 }
 
 .profile_content .profile .profile_details {
@@ -193,6 +207,7 @@ body{
 */
 
 .profile .profile_details .name_job{
+    color:#11101d;
     margin-left: 10px;
      
 }
@@ -209,18 +224,20 @@ body{
 
 .profile #log_out{
     text-decoration: none;
-    color: #fff;
+    color: #11101d;
     position: absolute;
     left: 50%;
     bottom: -10px;
     transform: translateX(-50%);
     min-height: 50px;
-    line-height: 20px;
+    min-width:80%;
+    line-height: 30px;
     font-size: 20px;
     border-radius: 12px;
     text-align: center;
-    transition: all 0.4s ease;
-    background: rgb(79, 9, 32);
+    transition: all 0.5s ease;
+    background: #fff;
+    border-radius: 10px 60px 30px;
 }
 
 .sidebar.active .profile #log_out{
@@ -246,7 +263,7 @@ body{
 .home_content .text{
     font-size: 25px;
     font-weight: 400;
-    color: rgb(79, 9, 32);
+    color: #11101d;
     margin: 12px  ;
 }
 
