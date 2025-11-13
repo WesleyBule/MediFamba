@@ -4,9 +4,12 @@ from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+from rolepermissions.roles import assign_role
+from rolepermissions.decorators import has_role_decorator
+
 
 from .forms import UserRegisterForm 
-
+from .models import Doctor , Patient 
 
 
 def user_register(request):
@@ -31,10 +34,13 @@ def user_login(request):
         if user is not None:
             login(request , user)
 
-            if hasattr(user, 'doctor'):
+            if Doctor.objects.filter(user=user).exists():
+                assign_role(user , 'doctor')
                 return redirect('home_doctor')
-            elif hasattr(user, 'patient'):
+            elif Patient.objects.filter(user=user).exists():
+                assign_role(user , 'patient')
                 return redirect('home_patient')
+            assign_role(user, 'user')
             return redirect('home')
         else :
             messages.info(request, "Invalid Username or Password")
@@ -47,15 +53,17 @@ def user_logout(request):
     return redirect('logIn')
 
 
-
+@has_role_decorator('user')
 @login_required(login_url='logIn')
 def home(request):
     return render(request, "users/home.html")
 
+@has_role_decorator('doctor')
 @login_required(login_url='logIn')
 def home_doctor(request):
     return render(request, "users/home_doctor.html")
 
+@has_role_decorator('patient')
 @login_required(login_url='logIn')
 def home_patients(request):
     return render(request, "users/home_patients.html")

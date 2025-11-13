@@ -40,6 +40,7 @@ DJANGO_APPS = [
 ]
 THIRD_PART_APPS = [
     "widget_tweaks",
+    'rolepermissions',
 
 ]
 MY_APPS = [
@@ -163,3 +164,5 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-success"
     }
 }
+
+ROLEPERMISSIONS_MODULE = "MediFamba.roles"
