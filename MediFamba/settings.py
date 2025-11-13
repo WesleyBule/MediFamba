@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 DJANGO_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,13 +39,13 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 THIRD_PART_APPS = [
-    "widget_tweaks"
+    "widget_tweaks",
+
 ]
 MY_APPS = [
     'users',
     'appointments',
 ]
-
 INSTALLED_APPS = DJANGO_APPS + THIRD_PART_APPS + MY_APPS
 
 MIDDLEWARE = [
