@@ -59,6 +59,13 @@ def user_logout(request):
 def home(request):
     return render(request, "users/home.html")
 
+@has_role_decorator('user')
+@login_required(login_url='logIn')
+def information(request):
+    return render(request, "users/info.html")
+
+
+
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
 def home_doctor(request):

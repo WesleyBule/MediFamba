@@ -5,11 +5,10 @@ from users import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('users/', include("users.urls")),
 
-
     path("", views.home , name='home'),
+    path("info/",views.information, name='info'),
 
     path("doctors/",views.home_doctor, name="home_doctor"),
     path("doctors/appointments",views.appointmentList, name="doctor_appointment"),
