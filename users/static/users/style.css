@@ -256,7 +256,6 @@ body{
     height: 100%;
     left: 78px;
     width: calc(100% - 78px);
-    top: 0;
     transition: all 0.5s ease;
 }
 
@@ -264,7 +263,7 @@ body{
     font-size: 25px;
     font-weight: 400;
     color: #11101d;
-    margin: 12px  ;
+    margin: 12px;
 }
 
 .sidebar.active ~ .home_content{

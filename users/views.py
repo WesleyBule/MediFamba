@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from rolepermissions.roles import assign_role
 from rolepermissions.decorators import has_role_decorator
 
-
+from appointments.models import Appointment
 from .forms import UserRegisterForm 
 from .models import Doctor , Patient 
 
@@ -33,6 +33,7 @@ def user_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request , user)
+            
 
             if Doctor.objects.filter(user=user).exists():
                 assign_role(user , 'doctor')
@@ -63,8 +64,32 @@ def home(request):
 def home_doctor(request):
     return render(request, "users/home_doctor.html")
 
+
+@has_role_decorator('doctor')
+@login_required(login_url='logIn')
+def appointmentList(request):
+  appointments = Appointment.objects.all()
+  context = {
+    "appointments":appointments,
+  }
+  return render(request,"users/appointments.html",context)
+
+
+@has_role_decorator('doctor')
+@login_required(login_url='logIn')
+def patientList(request):
+    patients = Patient.objects.all()
+    context = {
+        'patients':patients,
+    }
+    return render(request, "users/doctor_patients.html", context)
+
+
+
+
 @has_role_decorator('patient')
 @login_required(login_url='logIn')
 def home_patients(request):
     return render(request, "users/home_patients.html")
+
 

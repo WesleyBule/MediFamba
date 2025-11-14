@@ -5,9 +5,16 @@ from users import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('users/', include("users.urls")),
-    path('appointments/', include("appointments.urls")),
+
+
     path("", views.home , name='home'),
+
     path("doctors/",views.home_doctor, name="home_doctor"),
-    path("patients/", views.home_patients, name="home_patient")
+    path("doctors/appointments",views.appointmentList, name="doctor_appointment"),
+    path("doctors/patients",views.patientList, name="doctor_patients"),
+
+
+    path("patients/", views.home_patients, name="home_patient"),
 ]
