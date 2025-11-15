@@ -94,7 +94,6 @@ body {
 
 
 .sidebar ul li {
-    right: 100%;
     position: relative;
     height: 50px;
     width: 100%;
@@ -105,12 +104,12 @@ body {
 }
 
 .sidebar.active ul li {
-    left: 0;
+
 }
 
 .sidebar ul li .tooltip {
     position: absolute;
-    left: 105px;
+    left: 122px;
     top: 50%;
     transform: translate(-50%, -50%);
     border-radius: 6px;
@@ -150,13 +149,13 @@ body {
 
 .sidebar ul li a:hover {
     color: #11101d;
-    background-color: #fff;
+    background-color:#F2F2F2;
 
 }
 
 .sidebar ul li i {
     height: 50px;
-    min-width: 50px;
+    width: 50px;
     border-radius: 12px;
     line-height: 50px;
     text-align: center;
