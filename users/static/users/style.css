@@ -149,6 +149,9 @@ body{
     border-radius: 12px;
     line-height: 50px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .sidebar .links_name{
     opacity: 0;
