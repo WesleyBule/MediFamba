@@ -15,14 +15,13 @@ class Doctor(models.Model):
 
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, default="")
+    firstname = models.CharField(max_length=255, default="")
+    lastname = models.CharField(max_length=255, default="")
     residence = models.CharField(max_length=50, default="")
     phoneNumber = models.CharField(max_length=14, unique=True, default="+258 ")
     gender = models.CharField(max_length=8, choices=[('m',"Male"),('f','Female')], default="")
     birthDate = models.DateField()
     is_booked = models.BooleanField(default=False)
 
-
     def __str__(self):
-        return self.name
-
+        return f"{self.firstname} {self.lastname}"

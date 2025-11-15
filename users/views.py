@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.decorators import login_required
@@ -75,11 +75,38 @@ def home_doctor(request):
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
 def appointmentList(request):
-  appointments = Appointment.objects.all()
-  context = {
-    "appointments":appointments,
-  }
-  return render(request,"users/appointments.html",context)
+    doctor = Doctor.objects.get(user=request.user)
+
+    appointments = Appointment.objects.filter(doctor=doctor).order_by('id')
+    context = {
+        "appointments":appointments,
+    }
+    return render(request,"users/appointments.html",context)
+
+
+@has_role_decorator('doctor')
+@login_required(login_url='logIn')
+def confirm_appointment(request , pk):
+    appointment = get_object_or_404(Appointment, pk=pk)
+    appointment.status = 'confirmed'
+    appointment.save()
+    return redirect("doctor_appointment")
+
+def cancell_appointment(request, pk):
+    appointment = get_object_or_404(Appointment, pk=pk)
+    appointment.status = 'cancelled'
+    appointment.save()
+    return redirect("doctor_appointment")
+
+
+def reschedule_appointment(request, pk):
+    appointment = get_object_or_404(Appointment, pk=pk)
+    appointment.status = 'pending'
+    appointment.save()
+    return redirect("doctor_appointment")
+
+
+
 
 
 @has_role_decorator('doctor')

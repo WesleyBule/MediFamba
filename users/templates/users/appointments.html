@@ -11,5 +11,32 @@ Doctor | Patients
 {% block body %}
     {% block main_content %}
         <h1>Appointments</h1>
+        <br>
+        <div class="table-responsive mx-auto" style="max-width: 1200px;">
+            <table class="table table-active table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th class="text-center">Patient</th>
+                        <th class="text-center">Date & Time</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in appointments  %}
+                        <tr>
+                            <td class="text-center" >{{ appointment.patient.firstname  }} {{ appointment.patient.lastname  }}</td>
+                            <td class="text-center">{{ appointment.date|date:"d-m-Y | h:iA" }}</td>
+                            <td class="text-center">{{ appointment.status }}</td>
+                            <td class="text-center">
+                                <a href="{% url 'confirm_appointment' appointment.id %}"><button type="button" class="btn btn-outline-success">Confirm</button></a>
+                                <a href="{% url 'reschedule_appointment' appointment.id %}"><button type="button" class="btn btn-outline-warning">Reschedule</button></a>
+                                <a href="{% url 'cancell_appointment' appointment.id %}"><button type="button" class="btn btn-outline-danger">Cancell</button></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     {% endblock main_content %}
 {% endblock body %}
