@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     
+    {% block links %}
+    
+    {% endblock links %}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'users/style.css' %}">
+    <title> {% block 'title' %} {% endblock 'title' %} </title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <img src="{% static 'images/medifamba.png' %%}" alt="">
+                <div class="logo_name">
+                    <span class="medi">Medi</span><span class="famba">Famba</span>
+                </div>
+            </div>
+            <i style="color: #11101d;" class='bx  bx-menu' id="btn"></i> 
+        </div>
+        <ul class="nav_list">
+           <li>
+                <a href="{% url 'home' %}">
+                    <i class='bx  bx-home'></i>  
+                    <span class="links_name">Home</span>
+                </a>
+                <span class="tooltip">Home</span>
+            </li>
+            <li>
+                <a href="{% url 'info' %}">
+                    <i class='bx  bx-alert-circle'></i>   
+                    <span class="links_name">info</span>
+                </a>
+                <span class="tooltip">Info</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <div class="name_job">
+                        <div class="name">{{user}} </div>
+                    </div>
+                </div>
+                <a href="{% url 'logOut' %}"><i class='bx  bx-arrow-out-left-square-half' id="log_out"></i></a>
+            </div>
+        </div>
+     </div>
+     <div class="home_content">
+        <div class="text">Home Content</div>
+     </div>
+
+    <script>
+    
+    let btn = document.querySelector("#btn");
+    let sidebar = document.querySelector(".sidebar");
+
+    btn.onclick = function(){
+        sidebar.classList.toggle("active")
+    }
+    </script>
+
+    {% block 'body' %}
+
+    {% endblock 'body' %}
+</body>
+</html>

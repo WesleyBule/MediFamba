@@ -237,7 +237,7 @@ body{
     text-align: center;
     transition: all 0.5s ease;
     background: #fff;
-    border-radius: 10px 60px 30px;
+    border-radius: 12px;
 }
 
 .sidebar.active .profile #log_out{
@@ -257,6 +257,7 @@ body{
     left: 78px;
     width: calc(100% - 78px);
     transition: all 0.5s ease;
+    top: 0;
 }
 
 .home_content .text{
@@ -264,6 +265,7 @@ body{
     font-weight: 400;
     color: #11101d;
     margin: 12px;
+
 }
 
 .sidebar.active ~ .home_content{

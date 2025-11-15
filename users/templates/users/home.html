@@ -1,3 +1,4 @@
+{% extends "users-base.html" %}
 {% load static %}
 {% block links %}
 <link rel="stylesheet" href="{% static 'users/style.css' %}">
@@ -7,55 +8,5 @@
 
 {% endblock 'title' %}
 {% block body %}
-    <div class="sidebar">
-        <div class="logo_content">
-            <div class="logo">
-                <img src="{% static 'images/medifamba.png' %%}" alt="">
-                <div class="logo_name">
-                    <span class="medi">Medi</span><span class="famba">Famba</span>
-                </div>
-            </div>
-            <i style="color: #11101d;" class='bx  bx-menu' id="btn"></i> 
-        </div>
-        <ul class="nav_list">
-           <li>
-                <a href="{% url 'home' %}">
-                    <i class='bx  bx-home'></i>  
-                    <span class="links_name">Home</span>
-                </a>
-                <span class="tooltip">Home</span>
-            </li>
-            <li>
-                <a href="{% url 'info' %}">
-                    <i class='bx  bx-alert-circle'></i>   
-                    <span class="links_name">info</span>
-                </a>
-                <span class="tooltip">Info</span>
-            </li>
-        </ul>
-        <div class="profile_content">
-            <div class="profile">
-                <div class="profile_details">
-                    <div class="name_job">
-                        <div class="name">{{user}} </div>
-                    </div>
-                </div>
-                <a href="{% url 'logOut' %}"><i class='bx  bx-arrow-out-left-square-half' id="log_out"></i></a>
-            </div>
-        </div>
-     </div>
-     <div class="home_content">
-        <div class="text">Home Content</div>
-     </div>
-
-    <script>
-    
-    let btn = document.querySelector("#btn");
-    let sidebar = document.querySelector(".sidebar");
-
-    btn.onclick = function(){
-        sidebar.classList.toggle("active")
-    }
-    </script>
 
 {% endblock body %}

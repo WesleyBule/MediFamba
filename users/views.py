@@ -94,9 +94,28 @@ def patientList(request):
 
 
 
+
 @has_role_decorator('patient')
 @login_required(login_url='logIn')
 def home_patients(request):
     return render(request, "users/home_patients.html")
 
 
+@has_role_decorator('patient')
+@login_required(login_url='logIn')
+def agendaList(request):
+    agenda = Appointment.objects.all()
+    context = {
+        'agenda':agenda,
+    }
+    return render(request, "users/patients_agenda.html", context)
+
+
+@has_role_decorator('patient')
+@login_required(login_url='logIn')
+def doctorList(request):
+    doctors = Doctor.objects.all()
+    context = {
+        'doctors':doctors,
+    }
+    return render(request,"users/patient_doctors.html", context)
