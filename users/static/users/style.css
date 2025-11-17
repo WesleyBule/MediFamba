@@ -31,7 +31,7 @@ body {
     padding: 6px 16px;
     transition: all 0.5s ease;
     color: #11101d;
-    border-radius:14px;
+    border-radius:12px;
 }
 
 .sidebar.active {

@@ -7,7 +7,7 @@ class Appointment(models.Model):
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE,
         related_name='doctor_appointments')
     date = models.DateTimeField()
-    status = models.CharField(max_length=20, choices=[
+    status = models.CharField(max_length=20, null = True , blank = True , choices=[
         ('pending','Pending'),
         ('confirmed','Confirmed'),
-        ('cancelled','Cancelled')] , default="-----")
+        ('cancelled','Cancelled')])

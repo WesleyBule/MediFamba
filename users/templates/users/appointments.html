@@ -27,11 +27,32 @@ Doctor | Patients
                         <tr>
                             <td class="text-center" >{{ appointment.patient.firstname  }} {{ appointment.patient.lastname  }}</td>
                             <td class="text-center">{{ appointment.date|date:"d-m-Y | h:iA" }}</td>
-                            <td class="text-center">{{ appointment.status }}</td>
+
+                   
+                                {% if appointment.status == 'confirmed' %}
+                                    <td class="text-center">
+                                        <span class="btn btn-outline-success  disabled">{{ appointment.status }}</span>
+                                    </td>                          
+                                {% elif appointment.status == 'pending' %}
+                                    <td class="text-center">
+                                        <span class="btn btn-outline-warning  disabled">{{ appointment.status }}</span>
+                                    </td>
+                                {% elif appointment.status == 'cancelled'%}
+                                    <td class="text-center">
+                                        <span class="btn btn-outline-danger  disabled">{{ appointment.status }}</span>
+                                    </td>
+                                {% else %}
+                                <td class="text-center"> {{ appointment.status|default:"-----" }} </td>
+                                {% endif %}
                             <td class="text-center">
-                                <a href="{% url 'confirm_appointment' appointment.id %}"><button type="button" class="btn btn-outline-success">Confirm</button></a>
-                                <a href="{% url 'reschedule_appointment' appointment.id %}"><button type="button" class="btn btn-outline-warning">Reschedule</button></a>
-                                <a href="{% url 'cancell_appointment' appointment.id %}"><button type="button" class="btn btn-outline-danger">Cancell</button></a>
+                                {% if appointment.previous_status %}
+                                    <a href="{% url 'confirm_appointment' appointment.id %}"><button type="button" class="btn btn-success">Confirm</button></a>
+                                    <a href="{% url 'reschedule_appointment' appointment.id %}"><button type="button" class="btn btn-warning">Reschedule</button></a>
+                                    <a href="{% url 'cancell_appointment' appointment.id %}"><button type="button" class="btn btn-danger">Cancell</button></a>
+                                {%else%}
+                                    <a href="{% url 'undo_appointment' appointment.pk %}" class="btn btn-info btn-sm"><i class='bx  bx-undo'></i> </a>
+                                    <a href="{% url 'delete_appointment' appointment.pk %}" class="btn btn-danger btn-sm"><i class='bx  bx-trash'></i> </a>
+                                {%endif%}
                             </td>
                         </tr>
                     {% endfor %}

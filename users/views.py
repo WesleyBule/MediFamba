@@ -86,31 +86,6 @@ def appointmentList(request):
 
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
-def confirm_appointment(request , pk):
-    appointment = get_object_or_404(Appointment, pk=pk)
-    appointment.status = 'confirmed'
-    appointment.save()
-    return redirect("doctor_appointment")
-
-def cancell_appointment(request, pk):
-    appointment = get_object_or_404(Appointment, pk=pk)
-    appointment.status = 'cancelled'
-    appointment.save()
-    return redirect("doctor_appointment")
-
-
-def reschedule_appointment(request, pk):
-    appointment = get_object_or_404(Appointment, pk=pk)
-    appointment.status = 'pending'
-    appointment.save()
-    return redirect("doctor_appointment")
-
-
-
-
-
-@has_role_decorator('doctor')
-@login_required(login_url='logIn')
 def patientList(request):
     patients = Patient.objects.all()
     context = {

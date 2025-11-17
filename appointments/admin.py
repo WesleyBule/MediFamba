@@ -3,4 +3,4 @@ from .models import Appointment
 
 @admin.register(Appointment)
 class AppointmentAdmin(admin.ModelAdmin):
-    list_display = ['doctor', 'patient' , 'date', 'status'] 
+    list_display = ['id','doctor', 'patient' , 'date', 'status'] 
