@@ -27,7 +27,7 @@ def cancell_appointment(request, pk):
     return redirect("doctor_appointment")
 
 
-
+"""
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
 def reschedule_appointment(request, pk):
@@ -37,6 +37,8 @@ def reschedule_appointment(request, pk):
     appointment.status = 'pending'
     appointment.save()
     return redirect("doctor_appointment")
+"""
+
 
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')

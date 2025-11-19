@@ -45,9 +45,8 @@ Doctor | Patients
                                 <td class="text-center"> {{ appointment.status|default:"-----" }} </td>
                                 {% endif %}
                             <td class="text-center">
-                                {% if appointment.previous_status %}
+                                {% if appointment.status == true%}
                                     <a href="{% url 'confirm_appointment' appointment.id %}"><button type="button" class="btn btn-success">Confirm</button></a>
-                                    <a href="{% url 'reschedule_appointment' appointment.id %}"><button type="button" class="btn btn-warning">Reschedule</button></a>
                                     <a href="{% url 'cancell_appointment' appointment.id %}"><button type="button" class="btn btn-danger">Cancell</button></a>
                                 {%else%}
                                     <a href="{% url 'undo_appointment' appointment.pk %}" class="btn btn-info btn-sm"><i class='bx  bx-undo'></i> </a>
