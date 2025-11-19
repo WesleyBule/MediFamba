@@ -12,6 +12,18 @@ from .forms import UserRegisterForm
 from .models import Doctor , Patient 
 
 
+
+
+def root_redirect(request):
+    user = request.user
+    if user.is_authenticated:
+        if hasattr(user, 'doctor'):
+            return redirect("home_doctor")
+        if hasattr(user, 'patient'):
+            return redirect("home_patient")
+        return redirect("home_user")
+
+
 def user_register(request):
     form = UserRegisterForm()
     if request.method == "POST":
@@ -42,7 +54,7 @@ def user_login(request):
                 assign_role(user , 'patient')
                 return redirect('home_patient')
             assign_role(user, 'user')
-            return redirect('home')
+            return redirect('home_user')
         else :
             messages.info(request, "Invalid Username or Password")
             return render(request, 'users/logIn.html')
@@ -56,8 +68,8 @@ def user_logout(request):
 
 @has_role_decorator('user')
 @login_required(login_url='logIn')
-def home(request):
-    return render(request, "users/home.html")
+def home_user(request):
+    return render(request, "users/home_user.html")
 
 @has_role_decorator('user')
 @login_required(login_url='logIn')

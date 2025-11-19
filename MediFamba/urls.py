@@ -9,7 +9,9 @@ urlpatterns = [
     path("appointments/", include("appointments.urls")),
 
     
-    path("", views.home , name='home'),
+    path("", views.root_redirect , name='root_redirect'),
+
+    path("user/", views.home_user, name="home_user"),
     path("info/",views.information, name='info'),
 
     path("doctors/",views.home_doctor, name="home_doctor"),
