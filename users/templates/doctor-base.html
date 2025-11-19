@@ -57,8 +57,8 @@
                 <div class="profile_details">
                     <!--<i class='bx  bx-user-circle'></i> --> 
                     <div class="name_job">
-                        <div class="name">Dr. {{user}} </div>
-                        <div class="job">Dentist</div>
+                        <div class="name">Dr. {{user.doctor.name}} </div>
+                        <div class="job"> {{user.doctor.speciality}} </div>
                     </div>
                 </div>
                 <a href="{% url 'logOut' %}"><i class='bx  bx-arrow-out-left-square-half' id="log_out"></i></a>
