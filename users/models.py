@@ -4,10 +4,12 @@ from django.contrib.auth.models import User
 
 class Doctor(models.Model):
     user = models.OneToOneField(User ,on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, default="Dr. ")
+    name = models.CharField(max_length=255, default="")
     birthDate = models.DateField(default="2000-01-01")
     speciality = models.CharField(max_length=120)
-    is_booked = models.BooleanField(default=True)
+    residence = models.CharField(max_length=50, default="")
+    phoneNumber = models.CharField(max_length=14, unique=True, default="+258 ")
+    #stars = models.IntegerField()
 
     def __str__(self):
         return self.name
@@ -21,7 +23,6 @@ class Patient(models.Model):
     phoneNumber = models.CharField(max_length=14, unique=True, default="+258 ")
     gender = models.CharField(max_length=8, choices=[('M',"Male"),('F','Female')], default="")
     birthDate = models.DateField()
-    is_booked = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.firstname} {self.lastname}"
