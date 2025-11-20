@@ -19,7 +19,7 @@ class Patient(models.Model):
     lastname = models.CharField(max_length=255, default="")
     residence = models.CharField(max_length=50, default="")
     phoneNumber = models.CharField(max_length=14, unique=True, default="+258 ")
-    gender = models.CharField(max_length=8, choices=[('m',"Male"),('f','Female')], default="")
+    gender = models.CharField(max_length=8, choices=[('M',"Male"),('F','Female')], default="")
     birthDate = models.DateField()
     is_booked = models.BooleanField(default=False)
 

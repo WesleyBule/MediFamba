@@ -3,14 +3,11 @@ from django.contrib import messages
 from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
 from rolepermissions.roles import assign_role
 from rolepermissions.decorators import has_role_decorator
-
 from appointments.models import Appointment
 from .forms import UserRegisterForm 
 from .models import Doctor , Patient 
-
 
 
 
@@ -22,7 +19,7 @@ def root_redirect(request):
         if hasattr(user, 'patient'):
             return redirect("home_patient")
         return redirect("home_user")
-
+    return redirect('logIn')
 
 def user_register(request):
     form = UserRegisterForm()
