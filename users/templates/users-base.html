@@ -19,17 +19,13 @@
 </head>
 <body>
     <div class="sidebar">
-        <div class="logo_content">
-            <div class="logo">
-                <img src="{% static 'images/medifamba.png' %%}" alt="">
-                <div class="logo_name">
-                    <span class="medi">Medi</span><span class="famba">Famba</span>
-                </div>
-            </div>
-            <i style="color: #11101d;" class='bx  bx-menu' id="btn"></i> 
+        <div class="logo_details">
+            <img src="{% static 'images/medifamba.png' %}" alt="" height="40" width="40">
+            <div class="logo_name"><span class="medi">Medi</span><span class="famba">Famba</span></div>
+            <i class="bx bx-menu" id="btn"></i>
         </div>
-        <ul class="nav_list">
-           <li>
+        <ul class="nav-list">
+            <li>
                 <a href="{% url 'home_user' %}">
                     <i class='bx  bx-home'></i>  
                     <span class="links_name">Home</span>
@@ -37,31 +33,30 @@
                 <span class="tooltip">Home</span>
             </li>
             <li>
-                <a href="{% url 'info' %}">
+                <a href="{% url 'info' %}">  
                     <i class='bx  bx-alert-circle'></i>   
-                    <span class="links_name">info</span>
+                    <span class="links_name">Info</span>
                 </a>
                 <span class="tooltip">Info</span>
             </li>
-        </ul>
-        <div class="profile_content">
-            <div class="profile">
+            <li class="profile">
                 <div class="profile_details">
-                    <div class="name_job">
-                        <div class="name">{{user}} </div>
+                    <img src="{% static 'images/profile.png' %}" alt="Profile Image">
+                    <div class="profile_content">
+                        <div class="name">{{ user }}</div>
                     </div>
-                </div>
                 <a href="{% url 'logOut' %}"><i class='bx  bx-arrow-out-left-square-half' id="log_out"></i></a>
-            </div>
-        </div>
-     </div>
-     <div class="home_content">
+                </div>
+            </li>
+        </ul>
+    </div>
+    <section class="home_content">
         <div class="text">
             {% block main_content %}
-            
+                
             {% endblock main_content %}
         </div>
-     </div>
+    </section>
 
     <script>
     

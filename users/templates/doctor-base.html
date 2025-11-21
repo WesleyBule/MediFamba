@@ -20,19 +20,15 @@
 </head>
 <body>
     <div class="sidebar">
-        <div class="logo_content">
-            <div class="logo">
-                <img src="{% static 'images/medifamba.png' %}" alt=""> 
-                <div class="logo_name">
-                    <span class="medi">Medi</span><span class="famba">Famba</span>                
-                </div>
-            </div>
-            <i style="color: #11101d;" class='bx  bx-menu' id="btn"></i> 
+        <div class="logo_details">
+            <img src="{% static 'images/medifamba.png' %}" alt="" height="40" width="40">
+            <div class="logo_name"><span class="medi">Medi</span><span class="famba">Famba</span></div>
+            <i class="bx bx-menu" id="btn"></i>
         </div>
-        <ul class="nav_list">
+        <ul class="nav-list">
             <li>
                 <a href="{% url 'home_doctor' %}">
-                    <i class='bx  bx-dashboard'></i> 
+                    <i class='bx  bx-dashboard'></i>  
                     <span class="links_name">Home</span>
                 </a>
                 <span class="tooltip">Home</span>
@@ -40,9 +36,9 @@
             <li>
                 <a href="{% url 'doctor_appointment' %}">
                     <i class='bx  bx-calendar-alt'></i>   
-                    <span class="links_name">Appointments</span>
+                    <span class="links_name">Appointment</span>
                 </a>
-                <span class="tooltip">Appointments</span>
+                <span class="tooltip">Appointment</span>
             </li>
             <li>
                 <a href="{% url 'doctor_patients' %}">
@@ -51,28 +47,25 @@
                 </a>
                 <span class="tooltip">Patients</span>
             </li>
-        </ul>
-        <div class="profile_content">
-            <div class="profile">
+            <li class="profile">
                 <div class="profile_details">
-                    <!--<i class='bx  bx-user-circle'></i> --> 
-                    <div class="name_job">
-                        <div class="name">Dr. {{user.doctor.name}} </div>
-                        <div class="job"> {{user.doctor.speciality}} </div>
+                    <img src="{% static 'images/profile.png' %}" alt="Profile Image">
+                    <div class="profile_content">
+                        <div class="name">{{ user }}</div>
+                        <div class="job"> {{user.doctor.speciality}}</div>
                     </div>
-                </div>
                 <a href="{% url 'logOut' %}"><i class='bx  bx-arrow-out-left-square-half' id="log_out"></i></a>
-            </div>
-        </div>
+                </div>
+            </li>
+        </ul>
     </div>
-    <div class="home_content">
-
+    <section class="home_content">
         <div class="text">
             {% block main_content %}
-            
+                
             {% endblock main_content %}
         </div>
-    </div>
+    </section>
 
     <script>
     
