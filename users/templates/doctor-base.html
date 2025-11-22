@@ -21,7 +21,7 @@
 <body>
     <div class="sidebar">
         <div class="logo_details">
-            <img src="{% static 'images/medifamba.png' %}" alt="" height="40" width="40">
+            <img class="icon" src="{% static 'images/medifamba.png' %}" alt="" height="40" width="40">
             <div class="logo_name"><span class="medi">Medi</span><span class="famba">Famba</span></div>
             <i class="bx bx-menu" id="btn"></i>
         </div>
@@ -54,8 +54,11 @@
                         <div class="name">{{ user }}</div>
                         <div class="job"> {{user.doctor.speciality}}</div>
                     </div>
-                <a href="{% url 'logOut' %}"><i class='bx  bx-arrow-out-left-square-half' id="log_out"></i></a>
+                
                 </div>
+                <a href="{% url 'logOut' %}">
+                    <i class='bx  bx-arrow-out-left-square-half' id="log_out"></i>
+                </a>
             </li>
         </ul>
     </div>
@@ -69,13 +72,22 @@
 
     <script>
     
-        let btn = document.querySelector("#btn");
-        let sidebar = document.querySelector(".sidebar");
+        const sidebar = document.querySelector('.sidebar')
+        const closeBtn = document.querySelector('#btn')
 
-        btn.onclick = function(){
-            sidebar.classList.toggle("active")
+        closeBtn.addEventListener("click",function(){
+            sidebar.classList.toggle("open")
+            menuBtnChange()
+        })
+
+
+        function menuBtnChange(){
+            if(sidebar.classList.contains("open")){
+                closeBtn.classList.replace("bx-menu","bx-menu-right")
+            }else{
+                closeBtn.classList.replace("bx-menu-right","bx-menu")
+            }
         }
-
     </script>
 
     {% block 'body' %}

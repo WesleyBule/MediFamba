@@ -12,9 +12,9 @@ Doctor | Patients
     {% block main_content %}
         <h1>Appointments</h1>
         <br>
-        <div class="table-responsive mx-auto" style="max-width: 1200px;">
-            <table class="table table-active table-hover table-sm">
-                <thead>
+        <div class="table table-hover">
+            <table class="table table-hover table-striped appointments-table text-center">
+                <thead class="table-header">
                     <tr>
                         <th class="text-center">Patient</th>
                         <th class="text-center">Date & Time</th>
@@ -23,40 +23,35 @@ Doctor | Patients
                     </tr>
                 </thead>
                 <tbody>
-                    {% for appointment in appointments  %}
+                    {% for appointment in appointments %}
                         <tr>
-                            <td class="text-center" >{{ appointment.patient.firstname  }} {{ appointment.patient.lastname  }}</td>
-                            <td class="text-center">{{ appointment.date|date:"d-m-Y | h:iA" }}</td>
+                            <td>{{ appointment.patient.firstname }} {{ appointment.patient.lastname }}</td>
+                            <td>{{ appointment.date|date:"d-m-Y | h:iA" }}</td>
 
-                   
-                                {% if appointment.status == 'confirmed' %}
-                                    <td class="text-center">
-                                        <span class="btn btn-outline-success  disabled">{{ appointment.status }}</span>
-                                    </td>                          
-                                {% elif appointment.status == 'pending' %}
-                                    <td class="text-center">
-                                        <span class="btn btn-outline-warning  disabled">{{ appointment.status }}</span>
-                                    </td>
-                                {% elif appointment.status == 'cancelled'%}
-                                    <td class="text-center">
-                                        <span class="btn btn-outline-danger  disabled">{{ appointment.status }}</span>
-                                    </td>
+                            {% if appointment.status == 'confirmed' %}
+                                <td><span class="status confirmed">{{ appointment.status|title }}</span></td>
+                            {% elif appointment.status == 'pending' %}
+                                <td><span class="status pending">{{ appointment.status|title }}</span></td>
+                            {% elif appointment.status == 'cancelled' %}
+                                <td><span class="status cancelled">{{ appointment.status|title }}</span></td>
+                            {% else %}
+                                <td>{{ appointment.status|default:"-----" }}</td>
+                            {% endif %}
+
+                            <td>
+                                {% if appointment.status == true %}
+                                    <a href="{% url 'confirm_appointment' appointment.id %}" class="btn btn-sm btn-success">Confirm</a>
+                                    <a href="{% url 'cancell_appointment' appointment.id %}" class="btn btn-sm btn-danger">Cancel</a>
                                 {% else %}
-                                <td class="text-center"> {{ appointment.status|default:"-----" }} </td>
+                                    <a href="{% url 'undo_appointment' appointment.pk %}" class="btn btn-sm btn-info"><i class='bx bx-undo'></i></a>
+                                    <a href="{% url 'delete_appointment' appointment.pk %}" class="btn btn-sm btn-danger"><i class='bx bx-trash'></i></a>
                                 {% endif %}
-                            <td class="text-center">
-                                {% if appointment.status == true%}
-                                    <a href="{% url 'confirm_appointment' appointment.id %}"><button type="button" class="btn btn-success">Confirm</button></a>
-                                    <a href="{% url 'cancell_appointment' appointment.id %}"><button type="button" class="btn btn-danger">Cancell</button></a>
-                                {%else%}
-                                    <a href="{% url 'undo_appointment' appointment.pk %}" class="btn btn-info btn-sm"><i class='bx  bx-undo'></i> </a>
-                                    <a href="{% url 'delete_appointment' appointment.pk %}" class="btn btn-danger btn-sm"><i class='bx  bx-trash'></i> </a>
-                                {%endif%}
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
+
     {% endblock main_content %}
 {% endblock body %}
