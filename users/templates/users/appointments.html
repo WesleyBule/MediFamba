@@ -14,13 +14,13 @@ Doctor | Patients
 
             
             .table-container {
+                margin: 0 auto;
                 background: white;
                 border-radius: 16px;
                 padding: 20px;
-                
                 box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
                 width: 100%;
-                max-width: 1400px;
+                max-width: none;
             }
             
             
@@ -130,48 +130,57 @@ Doctor | Patients
                 color: white;
             }
 
+            .info-msg{
+                color: #222;
+                left: 50%;
+            }
+
         </style>
         <h1>Appointments</h1>
         <br>
-        <div class="table-container">
-            <table class="table modern-table">
-                <thead class="table-header">
-                    <tr>
-                        <th class="text-center">Patient</th>
-                        <th class="text-center">Date & Time</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for appointment in appointments %}
+        {% if appointments %}
+            <div class="table-container">
+                <table class="table modern-table">
+                    <thead class="table-header">
                         <tr>
-                            <td class="text-center">{{ appointment.patient.firstname }} {{ appointment.patient.lastname }}</td>
-                            <td class="text-center">{{ appointment.date|date:"d-m-Y | h:iA" }}</td>
-
-                            {% if appointment.status == 'confirmed' %}
-                                <td class="text-center"><span class="badge-status status-ativo">{{ appointment.status|title }}</span></td>
-                            {% elif appointment.status == 'pending' %}
-                                <td class="text-center"><span class="badge-status status-pendente">{{ appointment.status|title }}</span></td>
-                            {% elif appointment.status == 'cancelled' %}
-                                <td class="text-center"><span class="badge-status status-inativo">{{ appointment.status|title }}</span></td>
-                            {% else %}
-                                <td class="text-center">{{ appointment.status|default:"---" }}</td>
-                            {% endif %}
-
-                            <td class="text-center">
-                                {% if appointment.status == true %}
-                                    <a href="{% url 'confirm_appointment' appointment.id %}" class="btn btn-outline-success">Confirm</a>
-                                    <a href="{% url 'cancell_appointment' appointment.id %}" class="btn btn-outline-danger">Cancel</a>
-                                {% else %}
-                                    <a href="{% url 'undo_appointment' appointment.pk %}" class="action-btn"><i class='bx bx-undo'></i></a>
-                                    <a href="{% url 'delete_appointment' appointment.pk %}" class="action-btn btn-delete"><i class='bx bx-trash'></i></a>
-                                {% endif %}
-                            </td>
+                            <th class="text-center">Patient</th>
+                            <th class="text-center">Date & Time</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">Actions</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        {% for appointment in appointments %}
+                            <tr>
+                                <td class="text-center">{{ appointment.patient.firstname }} {{ appointment.patient.lastname }}</td>
+                                <td class="text-center">{{ appointment.date|date:"d-m-Y | h:iA" }}</td>
+
+                                {% if appointment.status == 'confirmed' %}
+                                    <td class="text-center"><span class="badge-status status-ativo">{{ appointment.status|title }}</span></td>
+                                {% elif appointment.status == 'pending' %}
+                                    <td class="text-center"><span class="badge-status status-pendente">{{ appointment.status|title }}</span></td>
+                                {% elif appointment.status == 'cancelled' %}
+                                    <td class="text-center"><span class="badge-status status-inativo">{{ appointment.status|title }}</span></td>
+                                {% else %}
+                                    <td class="text-center">{{ appointment.status|default:"---" }}</td>
+                                {% endif %}
+
+                                <td class="text-center">
+                                    {% if appointment.status == true %}
+                                        <a href="{% url 'confirm_appointment' appointment.id %}" class="btn btn-outline-success">Confirm</a>
+                                        <a href="{% url 'cancell_appointment' appointment.id %}" class="btn btn-outline-danger">Cancel</a>
+                                    {% else %}
+                                        <a href="{% url 'undo_appointment' appointment.pk %}" class="action-btn"><i class='bx bx-undo'></i></a>
+                                        <a href="{% url 'delete_appointment' appointment.pk %}" class="action-btn btn-delete"><i class='bx bx-trash'></i></a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p class="info-msg">No Appointments Available :(</p>
+        {% endif %}
     {% endblock main_content %}
 {% endblock body %}
