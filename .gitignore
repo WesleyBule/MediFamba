@@ -1,0 +1,8 @@
+# Python / Venv
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+
+.venv
