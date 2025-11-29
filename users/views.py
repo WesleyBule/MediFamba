@@ -115,7 +115,8 @@ def home_patients(request):
 @has_role_decorator('patient')
 @login_required(login_url='logIn')
 def agendaList(request):
-    agenda = Appointment.objects.all()
+    patient = Patient.objects.get(user=request.user)
+    agenda = Appointment.objects.filter(patient=patient)
     context = {
         'agenda':agenda,
     }
@@ -126,7 +127,10 @@ def agendaList(request):
 @login_required(login_url='logIn')
 def doctorList(request):
     doctors = Doctor.objects.all()
+    doctors_lenght = Doctor.objects.count()
     context = {
         'doctors':doctors,
+        'doctors_len':doctors_lenght,
     }
+    
     return render(request,"users/patient_doctors.html", context)
