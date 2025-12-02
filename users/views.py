@@ -123,6 +123,7 @@ def agendaList(request):
     return render(request, "users/patients_agenda.html", context)
 
 
+
 @has_role_decorator('patient')
 @login_required(login_url='logIn')
 def doctorList(request):
@@ -134,3 +135,8 @@ def doctorList(request):
     }
     
     return render(request,"users/patient_doctors.html", context)
+
+
+def bookAppointment(request):
+    patient = Patient.objects.get(user=request.user)
+    return render(request, "users/patient_bookAppointment.html")

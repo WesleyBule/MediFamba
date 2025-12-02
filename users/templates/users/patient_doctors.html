@@ -15,11 +15,11 @@
     {% block main_content %}
         <h1>Doctors</h1>
         <br>
-        <a href="{% url 'home_patient' %}"><button type="button" class="btn btn-dark"><i class='bx  bx-chevron-left'>Back</i></button></a>
+        <a href="{% url 'home_patient' %}"><button type="button" class="btn btn-dark" id="btn_back"><i class='bx  bx-chevron-left'>Back</i></button></a>
         
         {% for doctor in doctors %}
-            <div class="container py-3">
-                <div class="card mb-4 shadow-sm border-0 p-3" style="border-radius: 12px; background-color: #f8f9fa;">
+            <div class="container py-2 w-29%">
+                <div class="card mb-0 shadow-sm border-2 p-3" style="border-radius: 12px; background-color: #f8f9fa;">
                     <div class="row g-3 align-items-center">
 
                         <div class="col-auto">
@@ -35,12 +35,12 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <p class="mb-1 fw-bold">Specialities:</p>
-                            <span class="badge bg-info text-dark"> {{ doctor.speciality }} </span>
+                            <p class="mb-0 fw-bold">Speciality:</p>
+                            <span class="badge bg-success"> {{ doctor.speciality }} </span>
                         </div>
 
                         <div class="col-md-auto text-md-end mt-2 mt-md-0">
-                            <a href="#" class="btn btn-warning btn-sm">Book Appointment</a>
+                            <a href="{% url 'patient_book_appointment' %}" class="btn btn-warning btn-sm">Book Appointment</a>
                         </div>
                     </div>
                 </div>
