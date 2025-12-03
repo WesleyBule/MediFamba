@@ -139,6 +139,8 @@ def doctorList(request):
             doctor_id = request.POST.get('doctor_id')   
             if doctor_id:
                 appointment.doctor = Doctor.objects.get(id=doctor_id)
+            else:
+                ValueError("Doctor not selected")
             appointment.save()
             return redirect('patients_agenda')
 
