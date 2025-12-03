@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-
+from appointments.models import Appointment
 
 class UserRegisterForm(UserCreationForm):
     class Meta:
@@ -18,3 +18,21 @@ class UserRegisterForm(UserCreationForm):
             raise forms.ValidationError("A user with that email already exists")
         return email
 
+
+
+class ScheduleAppointmentForm(forms.ModelForm):
+    class Meta:
+        model = Appointment
+        fields = [
+            'date'
+        ]
+        widgets = {
+            'date': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local',
+                    'class': 'form-control',
+                    'style': 'max-width: 300px'
+                },
+                format='%Y-%m-%dT%H:%M'
+            )
+        }

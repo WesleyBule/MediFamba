@@ -13,8 +13,11 @@
 {% endblock 'title' %}
 {% block body %}
     {% block main_content %}
-
-
+        <form action="">
+            {% csrf_token %}
+            {{ form }}
+        </form>
+        
     {% endblock main_content %}
 
 {% endblock body %}

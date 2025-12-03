@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from rolepermissions.roles import assign_role
 from rolepermissions.decorators import has_role_decorator
 from appointments.models import Appointment
-from .forms import UserRegisterForm 
+from .forms import UserRegisterForm , ScheduleAppointmentForm
 from .models import Doctor , Patient 
 
 
@@ -139,4 +139,14 @@ def doctorList(request):
 
 def bookAppointment(request):
     patient = Patient.objects.get(user=request.user)
-    return render(request, "users/patient_bookAppointment.html")
+    form = ScheduleAppointmentForm()
+    if request.method == "POST":
+        form = ScheduleAppointmentForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("patient_doctors")
+
+    context = {
+        "form":form,
+    }
+    return render(request, "users/patient_bookAppointment.html", context)
