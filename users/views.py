@@ -129,24 +129,24 @@ def agendaList(request):
 def doctorList(request):
     doctors = Doctor.objects.all()
     doctors_lenght = Doctor.objects.count()
-    context = {
-        'doctors':doctors,
-        'doctors_len':doctors_lenght,
-    }
-    
-    return render(request,"users/patient_doctors.html", context)
 
-
-def bookAppointment(request):
-    patient = Patient.objects.get(user=request.user)
     form = ScheduleAppointmentForm()
     if request.method == "POST":
         form = ScheduleAppointmentForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("patient_doctors")
+            appointment = form.save(commit=False)
+            appointment.patient = request.user.patient
+            doctor_id = request.POST.get('doctor_id')   
+            if doctor_id:
+                appointment.doctor = Doctor.objects.get(id=doctor_id)
+            appointment.save()
+            return redirect('patients_agenda')
 
     context = {
-        "form":form,
+        'doctors':doctors,
+        'doctors_len':doctors_lenght,
+        'form':form,
     }
-    return render(request, "users/patient_bookAppointment.html", context)
+
+
+    return render(request,"users/patient_doctors.html", context)
