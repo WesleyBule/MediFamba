@@ -8,20 +8,20 @@ from rolepermissions.decorators import has_role_decorator
 
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
-def confirm_appointment(request , pk):
+def confirm_appointment(request , id):
     doctor = Doctor.objects.get(user=request.user)
 
-    appointment = get_object_or_404(Appointment, pk=pk , doctor=doctor)
+    appointment = get_object_or_404(Appointment, id=id , doctor=doctor)
     appointment.status = 'confirmed'
     appointment.save()
     return redirect("doctor_appointment")
 
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
-def cancell_appointment(request, pk):
+def cancell_appointment(request, id):
     doctor = Doctor.objects.get(user=request.user)
 
-    appointment = get_object_or_404(Appointment, pk=pk, doctor=doctor)
+    appointment = get_object_or_404(Appointment, id=id, doctor=doctor)
     appointment.status = 'cancelled'
     appointment.save()
     return redirect("doctor_appointment")
@@ -42,9 +42,9 @@ def reschedule_appointment(request, pk):
 
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
-def undo_appointment(request, pk):
+def undo_appointment(request, id):
     doctor = Doctor.objects.get(user=request.user)
-    appointment = get_object_or_404(Appointment, pk=pk, doctor=doctor)
+    appointment = get_object_or_404(Appointment, id=id, doctor=doctor)
     appointment.status = None
     appointment.save()
 
@@ -53,10 +53,10 @@ def undo_appointment(request, pk):
 
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
-def delete_appointment(request, pk):
+def delete_appointment(request, id):
     doctor = Doctor.objects.get(user=request.user)
 
-    appointment = get_object_or_404(Appointment, pk=pk , doctor=doctor)
+    appointment = get_object_or_404(Appointment, id=id , doctor=doctor)
     appointment.delete()
     return redirect('doctor_appointment')
 

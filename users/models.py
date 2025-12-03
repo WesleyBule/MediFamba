@@ -1,9 +1,16 @@
+
+import uuid
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth.models import User , AbstractUser
+
+class CustomUser(AbstractUser):
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
 
 
 class Doctor(models.Model):
-    user = models.OneToOneField(User ,on_delete=models.CASCADE)
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     name = models.CharField(max_length=255, default="")
     birthDate = models.DateField(default="2000-01-01")
     speciality = models.CharField(max_length=120)
@@ -16,7 +23,8 @@ class Doctor(models.Model):
 
 
 class Patient(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE)
     firstname = models.CharField(max_length=255, default="")
     lastname = models.CharField(max_length=255, default="")
     residence = models.CharField(max_length=50, default="")

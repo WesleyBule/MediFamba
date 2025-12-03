@@ -1,7 +1,9 @@
+import uuid
 from django.db import models
 from users.models import Patient , Doctor
 
 class Appointment(models.Model):
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
     patient = models.ForeignKey(Patient,on_delete=models.CASCADE , 
         related_name='appointments')
     doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE,
