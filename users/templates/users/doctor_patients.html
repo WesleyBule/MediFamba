@@ -114,7 +114,6 @@ Doctor | Patients
     <table class="table modern-table">
         <thead>
             <tr>
-                <th class="text-center">ID</th>
                 <th class="text-center">Name</th>
                 <th class="text-center">Contact</th>
                 <th class="text-center">Residence</th>
@@ -126,7 +125,6 @@ Doctor | Patients
         <tbody>
             {% for patient in patients %}
             <tr>
-                <td class="text-center"><strong>{{ patient.id }}</strong></td>
                 <td class="text-center">{{ patient }}</td>
                 <td class="text-center">{{ patient.phoneNumber }}</td>
                 <td class="text-center">{{ patient.residence }}</td>

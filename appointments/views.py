@@ -32,10 +32,10 @@ def cancell_appointment(request, id):
 @login_required(login_url='logIn')
 def reschedule_appointment(request, pk):
     doctor = Doctor.objects.get(user=request.user)
-
-    appointment = get_object_or_404(Appointment, pk=pk, doctor=doctor)
-    appointment.status = 'pending'
+ng'
     appointment.save()
+    appointment = get_object_or_404(Appointment, pk=pk, doctor=doctor)
+    appointment.status = 'pendi
     return redirect("doctor_appointment")
 """
 
