@@ -1,0 +1,16 @@
+{% extends "patient-base.html" %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'users/style.css' %}">
+<link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
+{% endblock links %}
+{% block 'title' %}
+
+{% endblock 'title' %}
+{% block body %}
+    {% block main_content %}
+        <h1>Settings</h1>
+        <br>
+        
+    {% endblock main_content %}
+{% endblock body %}

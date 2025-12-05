@@ -13,10 +13,40 @@
 {% endblock 'title' %}
 {% block body %}
     {% block main_content %}
+    <style>
+    *{
+        margin: 1;
+        padding: 1;
+    }
+    .btn_back {
+        margin-left: 5%;
+        padding: 12px 28px;
+        background: linear-gradient(135deg, #0b132b, #6b6bff);
+        color: white;
+        font-weight: 200;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 13px;
+
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        transition: 
+            transform 0.15s ease,
+            box-shadow 0.15s ease,
+            background 0.4s ease;
+    }
+
+    .btn_back:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 16px rgba(0,0,0,0.22);
+        background: #0b132b;
+    }
+
+    </style>
 
         <h1>Doctors</h1>
         <br>
-        <a href="{% url 'home_patient' %}"><button type="button" class="btn btn-dark" id="btn_back"><i class='bx  bx-chevron-left'>Back</i></button></a>
+        <a  href="{% url 'home_patient' %}"><button type="button" class="btn_back" id="btn_back"><i class='bx  bx-chevron-left'>Back</i></button></a>
         
         {% for doctor in doctors %}
             <div class="container py-2 w-29%">

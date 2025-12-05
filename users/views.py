@@ -152,3 +152,14 @@ def doctorList(request):
 
 
     return render(request,"users/patient_doctors.html", context)
+
+
+@has_role_decorator('patient')
+@login_required(login_url='logIn')
+def patientSettings(request):
+    patients = Patient.objects.get(user=request.user)
+    context = {
+        'patients':patients,
+    }
+
+    return render(request, 'users/patients-settings.html', context)
