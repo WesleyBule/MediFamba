@@ -16,7 +16,7 @@ class Doctor(models.Model):
     speciality = models.CharField(max_length=120)
     residence = models.CharField(max_length=50, default="")
     phoneNumber = models.CharField(max_length=14, unique=True, default="+258 ")
-    #stars = models.IntegerField()
+    profile = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -31,6 +31,7 @@ class Patient(models.Model):
     phoneNumber = models.CharField(max_length=13, unique=True, default="+258 ")
     gender = models.CharField(max_length=8, choices=[('M',"Male"),('F','Female')], default="")
     birthDate = models.DateField()
+    profile = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.firstname} {self.lastname}"

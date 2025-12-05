@@ -4,3 +4,4 @@ django-jazzmin
 django-role-permissions
 mysqlclient
 python-dotenv
+pillow
