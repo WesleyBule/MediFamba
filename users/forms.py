@@ -2,6 +2,11 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from appointments.models import Appointment
+from django.forms import ClearableFileInput
+
+from .models import Patient
+from .widgets import CustomClearableFileInput
+
 
 User = get_user_model()
 
@@ -37,4 +42,17 @@ class ScheduleAppointmentForm(forms.ModelForm):
                 },
                 format='%Y-%m-%dT%H:%M'
             )
+        }
+
+
+
+class PatientSettingsForm(forms.ModelForm):
+    class Meta:
+        model = Patient
+        fields = ['profile']
+        widgets = {
+            'profile': CustomClearableFileInput(attrs={
+                'class': 'profile-upload-input',
+                'accept': 'image/*'
+            })
         }
