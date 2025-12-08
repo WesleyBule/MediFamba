@@ -19,6 +19,7 @@ urlpatterns = [
     path("doctors/",views.home_doctor, name="home_doctor"),
     path("doctors/appointments",views.appointmentList, name="doctor_appointment"),
     path("doctors/patients",views.patientList, name="doctor_patients"),
+    path("doctors/settings", views.doctorSettings, name="doctor_settings"),
 
     path("patients/", views.home_patients, name="home_patient"),
     path("patients/agenda", views.agendaList,name='patients_agenda'),

@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 from rolepermissions.roles import assign_role
 from rolepermissions.decorators import has_role_decorator
 from appointments.models import Appointment
-from .forms import UserRegisterForm , ScheduleAppointmentForm , PatientSettingsForm
+from .forms import UserRegisterForm , ScheduleAppointmentForm , PatientSettingsForm , DoctorSettingsForm
 from .models import Doctor , Patient 
 
 
@@ -154,6 +154,10 @@ def doctorList(request):
     return render(request,"users/patient_doctors.html", context)
 
 
+
+
+
+
 @has_role_decorator('patient')
 @login_required(login_url='logIn')
 def patientSettings(request):
@@ -172,4 +176,25 @@ def patientSettings(request):
         'form':form
     }
 
-    return render(request, 'users/patients-settings.html', context)
+    return render(request, 'users/patients_settings.html', context)
+
+
+@has_role_decorator('doctor')
+@login_required(login_url='logIn')
+def doctorSettings(request):
+    doctor = request.user.doctor
+    form = DoctorSettingsForm()
+    if request.method == "POST":
+        form = DoctorSettingsForm(request.POST, request.FILES, instance=doctor)
+
+        if form.is_valid():
+            form.save()
+            return redirect("doctor_settings")
+
+    doctor = Doctor.objects.get(user=request.user)
+    context = {
+        'doctor':doctor,
+        'form':form
+    }
+
+    return render(request, 'users/doctor_settings.html', context)

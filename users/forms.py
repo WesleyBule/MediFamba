@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from appointments.models import Appointment
 from django.forms import ClearableFileInput
 
-from .models import Patient
+from .models import Patient , Doctor
 
 User = get_user_model()
 
@@ -54,3 +54,14 @@ class PatientSettingsForm(forms.ModelForm):
             })
         }
 
+
+
+class DoctorSettingsForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = ['profile']
+        widgets = {
+        'profile': ClearableFileInput(attrs={
+            'class': 'clearablefileinput profile-upload-input'
+            })
+        }

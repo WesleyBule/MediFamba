@@ -1,0 +1,58 @@
+{% extends "doctor-base.html" %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="{% static 'users/style.css' %}">
+<link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
+{% endblock links %}
+{% block 'title' %}
+
+{% endblock 'title' %}
+{% block body %}
+    {% block main_content %}
+
+    <style>
+        .profile-upload-input {
+            display: none;
+        }
+
+        .custom-upload-btn {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #4a90e2;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .custom-upload-btn:hover {
+            opacity: 0.8;
+        }
+        .clearablefileinput .current-file,
+        .clearablefileinput a {
+            display: none !important;
+        }
+
+
+            
+    </style>
+        <h1>Settings</h1>
+        <br>
+        <div class="card card-body">
+            <img src="{{ request.user.doctor.profile.url }}" alt="" height="150" width="150" style="border-radius: 45%;">
+            <hr>
+
+            <form action="{% url 'doctor_settings' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="custom-upload-btn" for="id_profile">
+                    Upload new photo
+                </label>
+                {{ form.profile }}
+                <button type="submit" class="btn btn-outline-primary">Change</button>
+            </form>
+        </div>
+        
+
+        
+    {% endblock main_content %}
+{% endblock body %}
