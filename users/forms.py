@@ -5,8 +5,6 @@ from appointments.models import Appointment
 from django.forms import ClearableFileInput
 
 from .models import Patient
-from .widgets import CustomClearableFileInput
-
 
 User = get_user_model()
 
@@ -51,8 +49,8 @@ class PatientSettingsForm(forms.ModelForm):
         model = Patient
         fields = ['profile']
         widgets = {
-            'profile': CustomClearableFileInput(attrs={
-                'class': 'profile-upload-input',
-                'accept': 'image/*'
+        'profile': ClearableFileInput(attrs={
+            'class': 'clearablefileinput profile-upload-input'
             })
         }
+

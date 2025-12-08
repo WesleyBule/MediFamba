@@ -41,16 +41,14 @@
         <div class="card card-body">
             <img src="{{ request.user.patient.profile.url }}" alt="" height="150" width="150" style="border-radius: 45%;">
             <hr>
-            
 
-
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{% url 'patient_settings' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label class="custom-upload-btn" for="id_profile">
                     Upload new photo
                 </label>
                 {{ form.profile }}
-                <button type="submit">Change</button>
+                <button type="submit" class="btn btn-outline-primary">Change</button>
             </form>
         </div>
         

@@ -164,6 +164,7 @@ def patientSettings(request):
 
         if form.is_valid():
             form.save()
+            return redirect("patient_settings")
 
     patients = Patient.objects.get(user=request.user)
     context = {
