@@ -179,6 +179,7 @@ def patientSettings(request):
     return render(request, 'users/patients_settings.html', context)
 
 
+
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
 def doctorSettings(request):

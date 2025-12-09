@@ -17,7 +17,7 @@
 
         .custom-upload-btn {
             display: inline-block;
-            padding: 12px 20px;
+            padding: 12px 10px;
             background: #4a90e2;
             color: white;
             border-radius: 8px;
@@ -28,31 +28,30 @@
         .custom-upload-btn:hover {
             opacity: 0.8;
         }
-        .clearablefileinput .current-file,
-        .clearablefileinput a {
-            display: none !important;
+        .card{
+            width: 49rem;
+            height: 90rem;
         }
-
 
             
     </style>
         <h1>Settings</h1>
         <br>
-        <div class="card card-body">
-            <img src="{{ request.user.patient.profile.url }}" alt="" height="150" width="150" style="border-radius: 45%;">
+        <div class="card mb-0 shadow-sm border-2 p-3" >
+        <div class="col-auto">
+             <img src="{{ request.user.patient.profile.url }}" alt="" height="150" width="150" style="border-radius: 45%;">
+        </div>
+           
             <hr>
-
             <form action="{% url 'patient_settings' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label class="custom-upload-btn" for="id_profile">
-                    Upload new photo
+                    Upload 
                 </label>
                 {{ form.profile }}
                 <button type="submit" class="btn btn-outline-primary">Change</button>
             </form>
         </div>
-        
-
-        
+        <br>
     {% endblock main_content %}
 {% endblock body %}

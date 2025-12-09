@@ -114,6 +114,7 @@ Doctor | Patients
     <table class="table modern-table">
         <thead>
             <tr>
+                <th class="text-center">pfp</th>
                 <th class="text-center">Name</th>
                 <th class="text-center">Contact</th>
                 <th class="text-center">Residence</th>
@@ -125,13 +126,14 @@ Doctor | Patients
         <tbody>
             {% for patient in patients %}
             <tr>
+                <td class="text-center"><img src="{{ patient.profile.url }}" alt="" height="60" width="60" style="border-radius: 50%;"></td>
                 <td class="text-center">{{ patient }}</td>
                 <td class="text-center">{{ patient.phoneNumber }}</td>
                 <td class="text-center">{{ patient.residence }}</td>
                 <td class="text-center">{{ patient.birthDate }}</td>
                 <td class="text-center">{{ patient.gender }}</td>
                 <td class="text-center">
-                    <a href="#" class="action-btn btn-info"><i class='bx bx-phone'></i></a>
+                    <a href="https://wa.me/{{ patient.phoneNumber }}" class="action-btn btn-info"><i class='bx bx-phone'></i></a>
                 </td>
             </tr>
             {% endfor %}
