@@ -1,6 +1,7 @@
 {% extends "patient-base.html" %}
 {% load static %}
 {% block links %}
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css' rel='stylesheet' />
 <link rel="stylesheet" href="{% static 'users/style.css' %}">
 <link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
 {% endblock links %}
@@ -19,7 +20,7 @@
                 border-radius: 16px;
                 padding: 20px;
                 box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
-                width: 1000px;
+                width: 50rem;
                 max-width: none;
             }
             
@@ -136,36 +137,60 @@
             }
 
         </style>
-        {% if agenda %}
-            <div class="table-container">
-                <table class="table modern-table">
-                    <thead class="table-header">
-                        <tr>
-                            <th class="text-center">Date & Time</th>
-                            <th class="text-center">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for agenda in agenda %}
+<div class="row">
+    <div class="col-md-7">
+            {% if agenda %}
+                <div class="table-container" >
+                    <table class="table modern-table">
+                        <thead class="table-header">
                             <tr>
-                                <td class="text-center">{{ agenda.date|date:"d-m-Y | h:iA" }}</td>
-
-                                {% if agenda.status == 'confirmed' %}
-                                    <td class="text-center"><span class="badge-status status-ativo">{{ agenda.status|title }}</span></td>
-                                {% elif agenda.status == 'pending' %}
-                                    <td class="text-center"><span class="badge-status status-pendente">{{ agenda.status|title }}</span></td>
-                                {% elif agenda.status == 'cancelled' %}
-                                    <td class="text-center"><span class="badge-status status-inativo">{{ agenda.status|title }}</span></td>
-                                {% else %}
-                                    <td class="text-center">{{ agenda.status|default:"---" }}</td>
-                                {% endif %}
+                                <th class="text-center">Date & Time</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Doctor</th>
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% else %}
-            <p class="info-msg">No Appointments Available :(</p>
-        {% endif %}
+                        </thead>
+                        <tbody>
+                            {% for agenda in agenda %}
+                                <tr>
+                                    <td class="text-center" style="font-size: 18px;">{{ agenda.date|date:"d-m-Y | h:iA" }}</td>
+
+                                    {% if agenda.status == 'confirmed' %}
+                                        <td class="text-center"><span class="badge-status status-ativo">{{ agenda.status|title }}</span></td>
+                                    {% elif agenda.status == 'pending' %}
+                                        <td class="text-center"><span class="badge-status status-pendente">{{ agenda.status|title }}</span></td>
+                                    {% elif agenda.status == 'cancelled' %}
+                                        <td class="text-center"><span class="badge-status status-inativo">{{ agenda.status|title }}</span></td>
+                                    {% else %}
+                                        <td class="text-center">{{ agenda.status|default:"---" }}</td>
+                                    {% endif %}
+                                    <td class="text-center" style="font-size: 18px;">{{ agenda.doctor}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p class="info-msg">No Appointments Available :(</p>
+            {% endif %}
+    </div>
+    <div class="col-md-3">
+            <div class="table-container" id='calendar' style="font-size: 12px;"></div>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+
+
+
+
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+    });
+    calendar.render();
+  });
+</script>
+
     {% endblock main_content %}
 {% endblock body %}

@@ -30,27 +30,32 @@
         }
         .card{
             width: 49rem;
-            height: 90rem;
+            border-radius: 25px;
+
         }
 
             
     </style>
         <h1>Settings</h1>
         <br>
-        <div class="card mb-0 shadow-sm border-2 p-3" >
-        <div class="col-auto">
-             <img src="{{ request.user.patient.profile.url }}" alt="" height="150" width="150" style="border-radius: 45%;">
-        </div>
-           
-            <hr>
-            <form action="{% url 'patient_settings' %}" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <label class="custom-upload-btn" for="id_profile">
-                    Upload 
-                </label>
-                {{ form.profile }}
-                <button type="submit" class="btn btn-outline-primary">Change</button>
-            </form>
+        <div class="card mb-0 shadow-sm border-3 p-3" >
+            <div class="col-auto">
+                <img src="{{ request.user.patient.profile.url }}" alt="" height="150" width="150" style="border-radius: 45%;">
+
+            </div>
+            
+                <hr>
+                <form action="{% url 'patient_settings' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label class="custom-upload-btn" for="id_profile" style="font-size: medium;">
+                        Upload 
+                    </label>
+                    {{ form.profile }}
+                    <button type="submit" class="btn btn-outline-primary mt-3">save</button>
+                </form>
+
+
+
         </div>
         <br>
     {% endblock main_content %}
