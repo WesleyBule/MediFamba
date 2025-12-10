@@ -127,7 +127,7 @@ def agendaList(request):
 @has_role_decorator('patient')
 @login_required(login_url='logIn')
 def doctorList(request):
-    doctors = Doctor.objects.all()
+    doctors = Doctor.objects.all().order_by('name')
     doctors_lenght = Doctor.objects.count()
 
     form = ScheduleAppointmentForm()
