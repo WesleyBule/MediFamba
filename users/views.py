@@ -9,7 +9,7 @@ from appointments.models import Appointment
 from .forms import UserRegisterForm , ScheduleAppointmentForm , PatientSettingsForm , DoctorSettingsForm
 from .models import Doctor , Patient 
 
-
+from datetime import date
 
 def root_redirect(request):
     user = request.user
@@ -96,7 +96,8 @@ def appointmentList(request):
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
 def patientList(request):
-    patients = Patient.objects.all()
+    patients = Patient.objects.all().order_by('firstname')
+
     context = {
         'patients':patients,
     }
