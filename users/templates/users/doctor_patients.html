@@ -123,7 +123,7 @@ Doctor | Patients
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Patient Details</h1>
-                                    <button type="button" class="btn-close btm-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close btm-sm" data-bs-dismiss="modal" aria-label="Close" style="font-size: 15px;" ></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="card rounded-3 p-3 position-relative" style="background-color: rgba(30, 52, 177, 0.076);">
@@ -140,8 +140,8 @@ Doctor | Patients
 
 
                                             <div class="d-flex flex-column justify-content-center flex-fill">
-                                                <p class="mb-1 text-muted" style="font-size: 15px;"><i class='bx  bx-phone'></i>   {{ patient.phoneNumber }}</p>
-                                                <p class="mb-0 text-muted" style="font-size: 15px;"><i class='bx  bx-envelope'></i>   {{ patient.user.email }}</p>
+                                                <p class="mb-0 text-muted" style="font-size: 15px;"><i class='bx  bx-phone'></i><span class="ms-3">{{ patient.phoneNumber }}</span></p>
+                                                <p class="mb-0 text-muted" style="font-size: 15px;"><i class='bx  bx-envelope'></i><span class="ms-3">{{ patient.user.email }}</span></p>
                                             </div> 
                                         </div>
                                     </div>
