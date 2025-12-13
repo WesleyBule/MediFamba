@@ -35,7 +35,7 @@ class Patient(models.Model):
     phoneNumber = models.CharField(max_length=14, unique=True, default="+258 ")
     gender = models.CharField(max_length=8, choices=[('male',"Male"),('female','Female')], default="")
     birthDate = models.DateField()
-    profile = models.ImageField(blank=True, null=True , default='defaultpfp.jpg')
+    profile = models.ImageField(blank=True, null=True , default='default.jpg')
 
     @property
     def age(self):
