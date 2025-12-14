@@ -17,7 +17,7 @@
 
         .custom-upload-btn {
             display: inline-block;
-            padding: 12px 20px;
+            padding: 12px 10px;
             background: #4a90e2;
             color: white;
             border-radius: 8px;
@@ -28,11 +28,11 @@
         .custom-upload-btn:hover {
             opacity: 0.8;
         }
-        .clearablefileinput .current-file,
-        .clearablefileinput a {
-            display: none !important;
-        }
+        .card{
+            width: 49rem;
+            border-radius: 25px;
 
+        }
 
             
     </style>
@@ -44,7 +44,7 @@
 
             <form action="{% url 'doctor_settings' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <label class="custom-upload-btn" for="id_profile">
+                <label class="custom-upload-btn" for="id_profile" style="font-size: medium;">
                     Upload new photo
                 </label>
                 {{ form.profile }}

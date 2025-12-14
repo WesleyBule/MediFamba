@@ -16,78 +16,133 @@ Doctor | Patients
 <br>
 
 <style>
-.table-container {
-    background: white;
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
-    width: 100rem;
-}
 
-.modern-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    overflow: hidden;
-    border-radius: 5px;
-}
+            .table-container {
+                margin: 0 auto;
+                background: white;
+                border-radius: 16px;
+                padding: 20px;
+                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+                width: 100%;
+                min-width: 850px;
+                max-width: 850px;
+            }
+            
+            
+            .modern-table {
+                
+                width: 100%;
+                border-collapse: separate;
+                border-spacing: 0;
+                overflow: hidden;
+                border-radius: 5px;
+            }
+            
+            /* Para Tablet*/
+            @media (max-width: 768px) {
+                .table-container {
+                    padding: 14px;
+                    max-width: 100%;
+                }
 
-.modern-table thead {
-    background: #2c3e50;
-    color: white;
-}
-
-.modern-table thead th {
-    padding: 16px 20px;
-    font-weight: 500;
-    font-size: 14px;
-    border: none;
-}
-
-
-.modern-table tbody tr {
-    transition: all 0.2s ease;
-    border-bottom: 1px solid #eee;
-}
-
-.modern-table tbody tr:hover {
-    background-color: #f8f9fa;
-}
-
-.modern-table tbody td {
-    padding: 16px 20px;
-    vertical-align: middle;
-    font-size: 12px;
-    color: #222;
-}
+                .modern-table {
+                    font-size: 14px;
+                }
+            }   
 
 
-.action-btn {
-    padding: 6px 14px;
-    border-radius: 6px;
-    border: 1px solid #dee2e6;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.85rem;
-    margin: 0 3px;
-    background: white;
-    color: #495057;
-}
+            /* Para Mobiles */
+            @media (max-width: 480px) {
+                .table-container {
+                    padding: 10px;
+                    border-radius: 10px;
+                    overflow-x: auto;
+                }
 
-.action-btn:hover {
-    background-color: #f8f9fa;
-    border-color: #adb5bd;
-}
+                .modern-table {
+                    min-width: 600px;
+                    font-size: 13px;
+                }
+            }
 
-.btn-info {
-    color: #0dcaf0;
-    border-color: #0dcaf0;
-}
 
-.btn-info:hover {
-    background-color: #0dcaf0;
-    color: white;
-}
+            .modern-table thead {
+                background: #2c3e50;
+                color: white;
+            }
+            
+            .modern-table thead th {
+                padding: 16px 20px;
+                font-weight: 500;
+                font-size: 0.9rem;
+                letter-spacing: 0.3px;
+                border: none;
+            }
+            
+            .modern-table thead th:first-child {
+                border-top-left-radius: 12px;
+            }
+            
+            .modern-table thead th:last-child {
+                border-top-right-radius: 12px;
+            }
+            
+            .modern-table tbody tr {
+                transition: all 0.2s ease;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .modern-table tbody tr:hover {
+                background-color: #f8f9fa;
+            }
+            
+            .modern-table tbody td {
+                padding: 16px 20px;
+                vertical-align: middle;
+                border: none;
+                color: #495057;
+            }
+            
+            .modern-table tbody tr:last-child {
+                border-bottom: none;
+            }
+            
+            .modern-table tbody tr:last-child td:first-child {
+                border-bottom-left-radius: 12px;
+            }
+            
+            .modern-table tbody tr:last-child td:last-child {
+                border-bottom-right-radius: 12px;
+            }
+            
+
+
+        .action-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            margin: 0 3px;
+            background: white;
+            color: #495057;
+        }
+
+        .action-btn:hover {
+            background-color: #f8f9fa;
+            border-color: #adb5bd;
+        }
+
+        .btn-info {
+            color: #0dcaf0;
+            border-color: #0dcaf0;
+        }
+
+        .btn-info:hover {
+            background-color: #0dcaf0;
+            color: white;
+        }
 </style>
 
 <div class="table-container">
@@ -111,7 +166,7 @@ Doctor | Patients
                         </td>
                         <td class="text-center">{{ patient.gender }}</td>
                         <td class="text-center">
-                            <a href="https://mailto:{{ patient.user.email }}" class="action-btn btn-info"><i class='bx  bx-message'></i></a>
+                            <a href="mailto:{{ patient.user.email }}" class="action-btn btn-info"><i class='bx  bx-message'></i></a>
                             <button class="action-btn btn-info" data-bs-toggle="modal" data-bs-target="#patient{{ patient.id }}"><i class='bx  bx-dots-horizontal-rounded-circle'></i> </button>
                             
                         </td>
