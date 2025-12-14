@@ -35,6 +35,8 @@ DJANGO_APPS = [
 THIRD_PART_APPS = [
     "widget_tweaks",
     'rolepermissions',
+    'cloudinary',
+    'cloudinary_storage',
 
 ]
 MY_APPS = [
@@ -121,8 +123,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_DIRS = []
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Default primary key field type
@@ -172,3 +172,12 @@ JAZZMIN_UI_TWEAKS = {
 }
 
 ROLEPERMISSIONS_MODULE = "MediFamba.roles"
+
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
