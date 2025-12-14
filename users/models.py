@@ -3,8 +3,15 @@ import uuid
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User , AbstractUser
+from django.core.validators import RegexValidator
 
 from datetime import date
+
+moz_phone_validator = RegexValidator(
+    regex=r'^\+258(8[234567]|84|87|82|85|83)\d{6}$',
+    message="Invalid Phone Number!"
+)
+
 
 class CustomUser(AbstractUser):
     id = models.UUIDField(primary_key=True,default=uuid.uuid4, editable=False)
@@ -19,7 +26,7 @@ class Doctor(models.Model):
     birthDate = models.DateField(default="2000-01-01")
     speciality = models.CharField(max_length=120)
     residence = models.CharField(max_length=50, default="")
-    phoneNumber = models.CharField(max_length=14, unique=True, default="+258 ")
+    phoneNumber = models.CharField(validators=[moz_phone_validator],max_length=14, unique=True, default="+258 ")
     profile = models.ImageField(upload_to="profiles/",blank=True, null=True)
 
     def __str__(self):
@@ -32,7 +39,7 @@ class Patient(models.Model):
     firstname = models.CharField(max_length=255, default="")
     lastname = models.CharField(max_length=255, default="")
     residence = models.CharField(max_length=50, default="")
-    phoneNumber = models.CharField(max_length=14, unique=True, default="+258 ")
+    phoneNumber = models.CharField(validators=[moz_phone_validator],max_length=14, unique=True, default="+258 ")
     gender = models.CharField(max_length=8, choices=[('male',"Male"),('female','Female')], default="")
     birthDate = models.DateField()
     profile = models.ImageField(upload_to="profiles/",blank=True, null=True)
