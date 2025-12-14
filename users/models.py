@@ -8,7 +8,7 @@ from django.core.validators import RegexValidator
 from datetime import date
 
 moz_phone_validator = RegexValidator(
-    regex=r'^\+258(8[234567]|84|87|82|85|83)\d{6}$',
+    regex=r'^\+258(8[234567])\d{7}$',
     message="Invalid Phone Number!"
 )
 
