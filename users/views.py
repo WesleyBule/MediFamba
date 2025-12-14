@@ -55,8 +55,7 @@ def user_login(request):
         else :
             messages.info(request, "Invalid Username or Password")
             return render(request, 'users/logIn.html')
-    context = {}
-    return render(request , "users/logIn.html", context)
+    return render(request , "users/logIn.html")
 
 def user_logout(request):
     logout(request)
@@ -129,8 +128,6 @@ def agendaList(request):
 @login_required(login_url='logIn')
 def doctorList(request):
     doctors = Doctor.objects.all().order_by('name')
-    doctors_lenght = Doctor.objects.count()
-
     form = ScheduleAppointmentForm()
     if request.method == "POST":
         form = ScheduleAppointmentForm(request.POST)
@@ -147,7 +144,6 @@ def doctorList(request):
 
     context = {
         'doctors':doctors,
-        'doctors_len':doctors_lenght,
         'form':form,
     }
 

@@ -13,17 +13,27 @@
 {% block body %}
     {% block main_content %}
     <style>
-    *{
-        margin: 1;
-        padding: 1;
-    }
-    .btn{
-        width: 100%;
-        border-radius: 5px;
-    }
-    .card{
-  
-    }
+        .btn{
+            width: 100%;
+            border-radius: 5px;
+        }
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(340px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+        @media (max-width: 992px) {
+            .doctors-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .doctors-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
     </style>
 
@@ -31,11 +41,10 @@
         <br>
       
 
-        <div class="container">
-            <div class="row">
+        <div class="container-fluid px-4 py-4">
+            <div class="doctors-grid">
                 {% for doctor in doctors %}
-                <div class="col-md-4 mb-4 w-4">
-                    <div class="card shadow-sm p-5" style="border-radius: 12px; background-color: #f8f9fa;">
+                    <div class="card shadow-lg p-4 " style="border-radius: 12px; background-color: #f8f9fa;">
                         <div class="d-flex align-items-center g-1">
                             <div class="flex-grow-1">
                                 <h5 class="card-title mb-0 fw-bold">Dr. {{ doctor.firstname }}  {{ doctor.lastname }}</h5>
@@ -44,16 +53,16 @@
                                 <p class="" style="font-size: 16px;"> 
                                     <span class="badge bg-light mb-1 text-muted" style="font-size: 12px;">{{ doctor.speciality }}</span>
                                 </p>
-                                <hr>
+                                <hr class="my-2">
                                 <div class="d-flex align-items-center">
                                     <img src="{{ doctor.profile.url }}" class="rounded-circle me-3" alt="" width="60" height="60">
                                     <div class="">
                                         <p class="mb-0" style="font-size: 16px;">Dr. {{ doctor.firstname }}  {{ doctor.lastname }}</p>
-                                        <p class="mb-0" style="font-size: 14px;">{{ doctor.user.email }}</p>
+                                        <p class="mb-0" style="font-size: 12px;">{{ doctor.user.email }}</p>
                                     </div>
 
                                 </div>
-                                <hr class="mb-4">
+                                <hr class="my-3">
                             </div>
 
 
@@ -65,7 +74,6 @@
                         </div>
                     </div>
 
-                </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="appointmentModal{{ doctor.id }}" tabindex="-1" aria-labelledby="appointmentModalLabel{{ doctor.id }}" aria-hidden="true">
