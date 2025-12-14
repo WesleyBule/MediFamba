@@ -164,6 +164,7 @@ def patientSettings(request):
         form = PatientSettingsForm(request.POST, request.FILES, instance=patient)
 
         if form.is_valid():
+            print(request.FILES)
             form.save()
             return redirect("patient_settings")
 
