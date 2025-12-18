@@ -109,7 +109,11 @@ def patientList(request):
 @has_role_decorator('patient')
 @login_required(login_url='logIn')
 def home_patients(request):
-    return render(request, "users/home_patients.html")
+    patient = Patient.objects.get(user=request.user)
+    context = {
+        'patient':patient,
+    }
+    return render(request, "users/home_patients.html", context)
 
 
 @has_role_decorator('patient')

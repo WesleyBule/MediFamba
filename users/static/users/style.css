@@ -266,14 +266,14 @@ body{
 
 
 .home_content{
-    position: relative;
+position: relative;
     background-color: var(--color-body);
     min-height: 100vh;
     top: 0;
-    left: 90px;
-    width: calc(100% - 90px);
+    left: 0; 
+    width: 100%;
     transition: all .5s ease;
-    z-index: w;
+    z-index: 1; 
 }
 
 .home_content .text{
@@ -291,3 +291,9 @@ body{
 }
 
 
+.page-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 2rem;
+}

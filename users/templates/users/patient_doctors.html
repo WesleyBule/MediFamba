@@ -1,4 +1,5 @@
 {% extends 'patient-base.html' %}
+{% load static %}}
 {% block links %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,10 +38,7 @@
 
     </style>
 
-        <h1>Doctors</h1>
-        <br>
-      
-
+        <h1 class="page-title" >Booking Activity</h1>
         <div class="container-fluid px-4 py-4">
             <div class="doctors-grid">
                 {% for doctor in doctors %}

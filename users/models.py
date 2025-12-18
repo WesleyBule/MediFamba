@@ -26,7 +26,7 @@ class Doctor(models.Model):
     birthDate = models.DateField(default="2000-01-01")
     speciality = models.CharField(max_length=120)
     residence = models.CharField(max_length=50, default="")
-    phoneNumber = models.CharField(validators=[moz_phone_validator],max_length=14, unique=True, default="+258 ")
+    phoneNumber = models.CharField(validators=[moz_phone_validator],max_length=14, unique=True, default="+258")
     profile = models.ImageField(upload_to="profiles/",blank=True, null=True)
 
     def __str__(self):
