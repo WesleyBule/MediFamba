@@ -57,7 +57,11 @@
             </li>
             <li class="profile">
                 <div class="profile_details">
-                    <img src="{{ request.user.patient.profile.url }}" alt="pfp">
+                    {% if profle %}
+                        <img src="{{ request.user.patient.profile.url }}" alt="">
+                    {% else %}
+                        <img src="{% static 'images/profile.png' %}" alt="">
+                    {% endif %}
                     <div class="profile_content">
                         <div class="name">{{ user }}</div>
                     </div>
