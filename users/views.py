@@ -110,8 +110,12 @@ def patientList(request):
 @login_required(login_url='logIn')
 def home_patients(request):
     patient = Patient.objects.get(user=request.user)
+    appointments = Appointment.objects.filter(patient=patient)
     context = {
         'patient':patient,
+        'total_appointments':appointments.count(),
+        'confirmed_appointments':appointments.filter(status='confirmed').count(),
+        'cancelled_appointments':appointments.filter(status='cancelled').count()
     }
     return render(request, "users/home_patients.html", context)
 

@@ -27,7 +27,7 @@ class Doctor(models.Model):
     speciality = models.CharField(max_length=120)
     residence = models.CharField(max_length=50, default="")
     phoneNumber = models.CharField(validators=[moz_phone_validator],max_length=14, unique=True, default="+258")
-    profile = models.ImageField(upload_to="profiles/",blank=True, null=True)
+    profile = models.ImageField(upload_to="profiles/",blank=True, null=True , default='static/profile.png')
 
     def __str__(self):
         return self.name
@@ -42,7 +42,7 @@ class Patient(models.Model):
     phoneNumber = models.CharField(validators=[moz_phone_validator],max_length=14, unique=True, default="+258 ")
     gender = models.CharField(max_length=8, choices=[('male',"Male"),('female','Female')], default="")
     birthDate = models.DateField()
-    profile = models.ImageField(upload_to="profiles/",blank=True, null=True)
+    profile = models.ImageField(upload_to="profiles/",blank=True, null=True, default='static/profile.png')
 
     @property
     def age(self):
