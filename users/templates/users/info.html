@@ -9,6 +9,271 @@
 {% endblock 'title' %}
 {% block body %}
     {% block main_content %}
-        <h1>information</h1>
+    <style>
+        body {
+            background:#dee2e6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .main-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-title {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        .alert-warning-custom {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .alert-icon {
+            color: #ffc107;
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .info-card h5 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .step-number {
+            background: #5b8dc9;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+        
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .step-subtitle {
+            color: #6c757d;
+            font-size: 0.95rem;
+            margin-left: 45px;
+            margin-top: 5px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .checkbox-icon {
+            color: #5bc0de;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+        
+        .hospital-illustration {
+            background: linear-gradient(to bottom, #e3f2fd 0%, #ffffff 100%);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .hospital-icon {
+            font-size: 100px;
+            color: #5b8dc9;
+        }
+        
+        .hospital-info-card {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 25px;
+        }
+        
+        .hospital-info-card h5 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .info-icon {
+            font-size: 1.2rem;
+            margin-right: 12px;
+            width: 25px;
+        }
+        
+        .icon-hospital {
+            color: #5b8dc9;
+        }
+        
+        .icon-phone {
+            color: #6c757d;
+        }
+        
+        .icon-whatsapp {
+            color: #25D366;
+        }
+        
+        .icon-clock {
+            color: #17a2b8;
+        }
+        
+        .info-blue {
+            background: #e7f3ff;
+            border-left: 4px solid #5b8dc9;
+            border-radius: 8px;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="header-title">
+            <i class="fas fa-info-circle"></i> Information
+        </h1>
+        
+
+        <div class="alert-warning-custom">
+            <div class="d-flex align-items-start">
+                <i class="fas fa-exclamation-triangle alert-icon"></i>
+                <div>
+                    <h5 class="mb-2"><strong>You are not yet registered as a patient.</strong></h5>
+                    <p class="mb-0">To access all online medical services, you must complete your registration in person.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="info-card">
+                    <h5>How to Register as a Patient:</h5>
+                    
+                    <div class="step-item">
+                        <span class="step-number">1</span>
+                        <div class="step-text">
+                            <strong>Go to the Central Hospital.</strong>
+                            <div class="step-subtitle">Address: Mozal IICAEG</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <span class="step-number">2</span>
+                        <div class="step-text">
+                            <strong>Bring an identification document.</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <span class="step-number">3</span>
+                        <div class="step-text">
+                            <strong>Register at the reception desk.</strong>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h5>After Registration:</h5>
+                    
+                    <div class="checkbox-item">
+                        <i class="fas fa-check-square checkbox-icon"></i>
+                        <span><strong>Schedule appointments online.</strong></span>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <i class="fas fa-check-square checkbox-icon"></i>
+                        <span><strong>Access your medical history.</strong></span>
+                    </div>
+                </div>
+                
+                <div class="info-blue">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-info-circle" style="color: #5b8dc9; font-size: 1.5rem; margin-right: 12px; margin-top: 3px;"></i>
+                        <div>
+                            <strong>Hospital Information:</strong><br>
+                            <span style="color: #6c757d;">Service hours: Mon to Fri, 09:00 - 18:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    
+            <div class="col-lg-6">
+
+                <div class="hospital-illustration">
+                    <i class="fas fa-hospital hospital-icon"></i>
+                    <h4 class="mt-3 mb-0" style="color: #5b8dc9;">Central Hospital</h4>
+                </div>
+                
+
+                <div class="hospital-info-card">
+                    <h5>Hospital Information:</h5>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-hospital icon-hospital info-icon"></i>
+                        <div>
+                            <strong>Central Hospital</strong><br>
+                            <span style="color: #6c757d;">Mozal IICAEG, Lab TIC;s</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-phone icon-phone info-icon"></i>
+                        <span>(258) 84 000 0000</span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp icon-whatsapp info-icon"></i>
+                        <span>WhatsApp: <strong>(258) 84 000 0000</strong></span>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-clock icon-clock info-icon"></i>
+                        <span>Service hours: Mon to Fri, 08:00 - 18:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
     {% endblock main_content %}
 {% endblock body %}
