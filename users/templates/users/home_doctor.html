@@ -1,14 +1,409 @@
-{% extends "doctor-base.html" %}
-
+{% extends "patient-base.html" %}
 {% load static %}
-{% block links %}
 
+{% block links %}
+<link rel="stylesheet" href="{% static 'users/style.css' %}">
+<link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
 {% endblock links %}
-{% block 'title' %}
-Doctor | Patients
-{% endblock 'title' %}
+
+{% block 'title' %}Patient Dashboard{% endblock 'title' %}
+
 {% block body %}
-    {% block main_content %}
-        <h1>Home</h1>
-    {% endblock main_content %}
+{% block main_content %}
+<style>
+    .dashboard-container {
+        background: #f8f9fc;
+        min-height: 100vh;
+        padding: 2rem;
+        width: 70vw;
+        max-width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1a202c;
+        margin-bottom: 0.5rem;
+    }
+
+    .page-header p {
+        color: #718096;
+        font-size: 0.95rem;
+    }
+
+    .hero-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        margin-bottom: 2rem;
+        transition: transform 0.3s ease;
+    }
+
+    .hero-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 3rem;
+        gap: 2rem;
+    }
+
+    .hero-text {
+        flex: 1;
+        color: white;
+    }
+
+    .hero-text h2 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+    }
+
+    .hero-text p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+    }
+
+    .btn-appointment {
+        background: white;
+        color: #667eea;
+        padding: 14px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        border: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .btn-appointment:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .hero-image img {
+        max-height: 280px;
+        filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2));
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .stat-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .stat-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+    }
+
+    .stat-icon.blue {
+        background: #e6f2ff;
+        color: #0066cc;
+    }
+
+    .stat-icon.orange {
+        background: #fff4e6;
+        color: #ff8c00;
+    }
+
+    .stat-icon.cyan {
+        background: #e0f7fa;
+        color: #00acc1;
+    }
+
+    .stat-icon.green {
+        background: #e8f5e9;
+        color: #4caf50;
+    }
+
+    .stat-content {
+        flex: 1;
+    }
+
+    .stat-value {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #1a202c;
+        margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+        color: #718096;
+        font-size: 0.95rem;
+    }
+
+    .section-card {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .section-header h3 {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #1a202c;
+    }
+
+    .view-all {
+        color: #667eea;
+        font-size: 0.95rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.2s ease;
+    }
+
+    .view-all:hover {
+        color: #764ba2;
+        text-decoration: underline;
+    }
+
+    .appointment-item {
+        display: flex;
+        align-items: center;
+        padding: 1.25rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        border: 2px solid transparent;
+    }
+
+    .appointment-item:hover {
+        background: #f8f9fc;
+        border-color: #e6f2ff;
+    }
+
+    .appointment-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1.25rem;
+        font-weight: 700;
+        color: white;
+        font-size: 1.1rem;
+    }
+
+    .appointment-info {
+        flex: 1;
+    }
+
+    .appointment-info .name {
+        font-weight: 600;
+        color: #1a202c;
+        margin-bottom: 0.35rem;
+        font-size: 1.05rem;
+    }
+
+    .appointment-info .specialty {
+        color: #718096;
+        font-size: 0.9rem;
+    }
+
+    .appointment-meta {
+        text-align: right;
+        margin-right: 1rem;
+    }
+
+    .appointment-meta .date {
+        color: #1a202c;
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+    }
+
+    .appointment-meta .time {
+        color: #718096;
+        font-size: 0.9rem;
+    }
+
+    .appointment-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .action-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        background: #f8f9fc;
+        color: #718096;
+        font-size: 1.2rem;
+    }
+
+    .action-btn:hover {
+        background: #e6f2ff;
+        color: #667eea;
+        transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-container {
+            padding: 1rem;
+        }
+
+        .hero-content {
+            flex-direction: column;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-text h2 {
+            font-size: 1.8rem;
+        }
+
+        .hero-image {
+            display: none;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+        }
+
+        .section-card {
+            padding: 1.5rem;
+        }
+
+        .appointment-item {
+            flex-wrap: wrap;
+        }
+
+        .appointment-meta {
+            width: 100%;
+            text-align: left;
+            margin-top: 0.75rem;
+            margin-left: 65px;
+            margin-right: 0;
+        }
+
+        .appointment-actions {
+            margin-left: auto;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div class="dashboard-container">
+    <div class="page-header">
+        <h1>Welcome back</h1>
+        <p>Hi, {{ doctor }}</p>
+    </div>
+
+    <div class="hero-card">
+
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon blue">
+                    <i class='bx bx-calendar-check'></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ total_appointments }}</div>
+                    <div class="stat-label">Total Booking</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon orange">
+                    <i class='bx bx-check-circle'></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value"></div>
+                    <div class="stat-label"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-header">
+                <div class="stat-icon cyan">
+                    <i class='bx bx-x-circle'></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value"></div>
+                    <div class="stat-label"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+{% endblock main_content %}
 {% endblock body %}

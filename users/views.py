@@ -77,7 +77,15 @@ def information(request):
 @has_role_decorator('doctor')
 @login_required(login_url='logIn')
 def home_doctor(request):
-    return render(request, "users/home_doctor.html")
+    doctor = Doctor.objects.get(user=request.user)
+    appointment = Appointment.objects.filter(doctor=doctor)
+
+    context ={
+        'doctor' : doctor,
+        'appointment':appointment,
+        'total_appointments':appointment.count(),
+    }
+    return render(request, "users/home_doctor.html",context)
 
 
 @has_role_decorator('doctor')
@@ -101,8 +109,6 @@ def patientList(request):
         'patients':patients,
     }
     return render(request, "users/doctor_patients.html", context)
-
-
 
 
 
